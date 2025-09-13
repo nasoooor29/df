@@ -94,10 +94,17 @@ done
 for script in "${SELECTED[@]}"; do
   blue "➡️  Installing: $script"
   echo "Downloading app '$script' for distro '$PLATFORM' ..."
-  echo "$script" >> installed_packages.log
-  echo "./install/$PLATFORM/$script.sh" >> installed_packages.log
+  echo "./install/$PLATFORM/$script.sh" >>installed_packages.log
   bash "./install/$PLATFORM/$script.sh"
   green "✅ Installed: $script"
+done
+
+# Run postflight scripts in order
+POSTFLIGHT_SCRIPTS=$(find ./scripts -type f -name "postflight_*.sh" | sort)
+for script in $POSTFLIGHT_SCRIPTS; do
+  blue "➡️  Running postflight script: $(basename $script)"
+  bash "$script"
+  green "✅ Completed: $(basename $script)"
 done
 
 echo "✅ Installation complete!"
