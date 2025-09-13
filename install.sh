@@ -90,6 +90,34 @@ for script in $STATIC_SCRIPTS; do
   green "✅ Completed: $(basename $script)"
 done
 
+# Save profile before installation
+if [ ${#SELECTED[@]} -gt 0 ]; then
+  TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+  PROFILE_FILE="profiles/tmp_$TIMESTAMP.profile"
+  
+  echo "# Profile created on $(date)" > "$PROFILE_FILE"
+  echo "PLATFORM=$PLATFORM" >> "$PROFILE_FILE"
+  echo "SELECTED_SCRIPTS=(" >> "$PROFILE_FILE"
+  for script in "${SELECTED[@]}"; do
+    echo "  \"$script\"" >> "$PROFILE_FILE"
+  done
+  echo ")" >> "$PROFILE_FILE"
+  
+  blue "💾 Profile saved to: $PROFILE_FILE"
+  
+  # Ask if user wants to save as permanent profile
+  if command -v gum >/dev/null 2>&1; then
+    SAVE_PERMANENT=$($GUM_PATH confirm "Save this profile permanently?" && echo "yes" || echo "no")
+    if [ "$SAVE_PERMANENT" = "yes" ]; then
+      PROFILE_NAME=$($GUM_PATH input --placeholder "Enter profile name (without .profile extension)")
+      if [ -n "$PROFILE_NAME" ]; then
+        cp "$PROFILE_FILE" "profiles/${PROFILE_NAME}.profile"
+        green "✅ Permanent profile saved as: profiles/${PROFILE_NAME}.profile"
+      fi
+    fi
+  fi
+fi
+
 # Run selected scripts
 for script in "${SELECTED[@]}"; do
   blue "➡️  Installing: $script"

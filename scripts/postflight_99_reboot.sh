@@ -7,3 +7,4 @@ if gum confirm "Do you want to reboot the system now?"; then
 else
   echo "Reboot skipped."
 fi
+

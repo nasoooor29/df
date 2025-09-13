@@ -1,1 +1,3 @@
 installed_packages.log
+# Temporary profiles (prefix with tmp_)
+profiles/tmp_*
