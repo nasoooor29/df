@@ -1,0 +1,47 @@
+/* 
+  bg - background
+  fg - foreground
+  br - border
+*/
+
+/* Main Colors */
+
+@define-color main-fg #cdd6f4;
+@define-color main-bg #1e1e2e;
+@define-color main-br #cdd6f4;
+
+@define-color active-bg #cba6f7;
+@define-color active-fg #1e1e2e;
+
+@define-color hover-bg #313244;
+@define-color hover-fg rgba(205, 214, 244, 0.75);
+
+@define-color white #ffffff;
+@define-color black #000000;
+
+/* Module Colors */
+
+@define-color module-fg #f5e0dc;
+@define-color workspaces #1e1e2e;
+
+@define-color cpuinfo #1e1e2e;
+@define-color memory #1e1e2e;
+@define-color cpu #313244;
+@define-color distro-fg #000000;
+@define-color distro-bg #cba6f7;
+@define-color time #313244;
+@define-color date #1e1e2e;
+@define-color tray #1e1e2e;
+
+@define-color pulseaudio #1e1e2e;
+@define-color backlight #1e1e2e;
+@define-color battery #313244;
+@define-color power #cba6f7;
+
+/* State Colors */
+
+@define-color good #f5e0dc;
+@define-color warning #f9e2af;
+@define-color critical #f38ba8;
+@define-color full #a6e3a1;
+@define-color charging #cdd6f4;

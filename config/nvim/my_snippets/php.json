@@ -1,0 +1,211 @@
+{
+  "php": {
+    "prefix": "php",
+
+    "body": ["<?php $1 ?>"],
+
+    "description": "php tag"
+  },
+
+  "echo": {
+    "prefix": "echo",
+
+    "body": ["<?= $1 ?>"],
+
+    "description": "echo php"
+  },
+
+  "echo": {
+    "prefix": "ecc",
+    "body": ["<?= htmlspecialchars($${1:variable}['${value}']) ?>"],
+    "description": "echo php with html escape"
+  },
+
+  "Echo with default value (ternary)": {
+    "prefix": "emt",
+
+    "body": [
+      "<?= !empty(${1:variable}) ? $${1:variable} : '${2:default value}'; ?>"
+    ],
+
+    "description": "Echo a variable, or a default value if the variable is empty"
+  },
+
+  "Echo based on boolean (ternary)": {
+    "prefix": "ect",
+
+    "body": [
+      "<?= ${1:condition} ? '${2:true message}' : '${3:false message}'; ?>"
+    ],
+
+    "description": "Echo one message if a condition is true, another if false"
+  },
+
+  "PHP else if snippet": {
+    "prefix": "elseif_more_sometime",
+
+    "body": ["<?php elseif (${1:more_sometime}): ?>"],
+
+    "description": "Inserts a PHP else if with a condition"
+  },
+
+  "if": {
+    "prefix": "if",
+
+    "body": ["<?php if ($1): ?>", "$2", "<?php endif ?>"],
+
+    "description": "php if tag"
+  },
+
+  "foreach": {
+    "prefix": "foreach",
+
+    "body": ["<?php foreach ($1 as $2): ?>", "$3", "<?php endforeach ?>"],
+
+    "description": "php foreach tag"
+  },
+
+  "?": {
+    "prefix": "?",
+
+    "body": ["<? $1 ?>", "$2"],
+
+    "description": "closing php tag"
+  },
+
+  "else": {
+    "prefix": "else",
+
+    "body": ["<?php else: ?>", "$1", "<?php endif ?>"],
+
+    "description": "php else tag"
+  },
+
+  "for": {
+    "prefix": "for",
+
+    "body": [
+      "<?php for ($${1:i} = 0; $${1:i} < ${2:count}; $${1:i}++): ?>",
+
+      "$3",
+
+      "<?php endfor ?>"
+    ],
+
+    "description": "php for loop"
+  },
+
+  "die/exit": {
+    "prefix": "die",
+
+    "body": ["<?php die('${1:message}'); ?>"],
+
+    "description": "php die or exit statement"
+  },
+
+  "var_dump": {
+    "prefix": "vardump",
+
+    "body": ["<?php var_dump($1); ?>"],
+
+    "description": "php var_dump for debugging"
+  },
+
+  "print_r": {
+    "prefix": "printr",
+
+    "body": ["<?php print_r($1); ?>"],
+
+    "description": "php print_r for debugging"
+  },
+
+  "session_start": {
+    "prefix": "session",
+
+    "body": ["<?php session_start(); ?>"],
+
+    "description": "php session_start()"
+  },
+
+  "include": {
+    "prefix": "include",
+
+    "body": ["<?php include '${1:filename}'; ?>"],
+
+    "description": "php include statement"
+  },
+
+  "require": {
+    "prefix": "require",
+
+    "body": ["<?php require '${1:filename}'; ?>"],
+
+    "description": "php require statement"
+  },
+
+  "include_once": {
+    "prefix": "includeonce",
+
+    "body": ["<?php include_once '${1:filename}'; ?>"],
+
+    "description": "php include_once statement"
+  },
+
+  "require_once": {
+    "prefix": "requireonce",
+
+    "body": ["<?php require_once '${1:filename}'; ?>"],
+
+    "description": "php require_once statement"
+  },
+
+  "constant define": {
+    "prefix": "define",
+
+    "body": ["<?php define('${1:CONSTANT_NAME}', ${2:'value'}); ?>"],
+
+    "description": "php define constant"
+  },
+
+  "isset": {
+    "prefix": "isset",
+
+    "body": ["<?php if (isset($${1:variable})): ?>", "\t$2", "<?php endif ?>"],
+
+    "description": "php isset check"
+  },
+
+  "empty": {
+    "prefix": "empty",
+
+    "body": ["<?php if (empty($${1:variable})): ?>", "\t$2", "<?php endif ?>"],
+
+    "description": "php empty check"
+  },
+
+  "unset": {
+    "prefix": "unset",
+
+    "body": ["<?php unset($${1:variable}); ?>"],
+
+    "description": "php unset variable"
+  },
+
+  "ternary operator": {
+    "prefix": "ternary",
+
+    "body": [
+      "<?= $${1:condition} ? $${2:value_if_true} : $${3:value_if_false}; ?>"
+    ],
+
+    "description": "php ternary operator"
+  },
+
+  "null coalescing operator": {
+    "prefix": "nullcoalescing",
+
+    "body": ["<?= $${1:variable} ?? $${2:default_value}; ?>"],
+
+    "description": "php null coalescing operator"
+  }
+}

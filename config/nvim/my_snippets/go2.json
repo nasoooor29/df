@@ -1,0 +1,40 @@
+{
+  "slog Debug": {
+    "prefix": "sd",
+    "body": "slog.Debug(${1:\"message\"})",
+    "description": "slog debug log"
+  },
+  "slog Info": {
+    "prefix": "si",
+    "body": "slog.Info(${1:\"message\"})",
+    "description": "slog info log"
+  },
+  "slog Warn": {
+    "prefix": "sw",
+    "body": "slog.Warn(${1:\"message\"})",
+    "description": "slog warn log"
+  },
+  "slog Error": {
+    "prefix": "se",
+    "body": "slog.Error(${1:\"error happened\"}, \"err\", err)",
+    "description": "slog error log"
+  },
+
+  "slog Error": {
+    "prefix": "dw",
+    "body": "slog.Error(${1:\"error happened\"}, \"err\", err)",
+    "description": "slog error log"
+  },
+
+  "slog Error": {
+    "prefix": "ifer",
+    "body": [
+      "if err != nil {",
+      "\tslog.Error(\"error happened\", \"err\", err)",
+      "\thttp.Error(w, \"Internal Server Error\", http.StatusInternalServerError)",
+      "\treturn",
+      "}"
+    ],
+    "description": "slog error log"
+  }
+}

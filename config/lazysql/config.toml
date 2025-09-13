@@ -1,0 +1,63 @@
+[application]
+DefaultPageSize = 300
+DisableSidebar = false
+
+[[database]]
+Name = 'data.db'
+URL = 'data.db'
+Provider = 'sqlite3'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = ''
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'db_prog'
+URL = 'mysql://admin:1234@db.1jz.cc:3306/borrow_my_charger'
+Provider = 'mysql'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'borrow_my_charger'
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'uploadyy'
+URL = 'postgresql://postgres.moqfmddalnobpsdoehtd:Slacks-Aspirate-Swagger-Patient-Islamic-Simple-Angular-Unpaved-Juggling6-Colonist@aws-0-ap-south-1.pooler.supabase.com:6543/postgres'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'postgres'
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'db1'
+URL = 'postgresql://postgres:pg@nasoooor.1jz.cc:54321?sslmode=disable'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = ''
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'lizarb'
+URL = 'lizarb.db'
+Provider = 'sqlite3'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = ''
+URLParams = ''
+Commands = []

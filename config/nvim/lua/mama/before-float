@@ -1,0 +1,113 @@
+local M = {}
+
+local config = {
+	max_files = 5,
+}
+
+M.tracked_files = {}
+
+-- Add file path to tracked list
+function M.track_buffer(bufnr)
+	if not vim.api.nvim_buf_is_valid(bufnr) or not vim.api.nvim_buf_is_loaded(bufnr) then
+		return
+	end
+
+	local path = vim.api.nvim_buf_get_name(bufnr)
+	if path == "" then
+		return
+	end -- skip [No Name] buffers
+
+	-- Avoid duplicates
+	for _, existing in ipairs(M.tracked_files) do
+		if existing == path then
+			return
+		end
+	end
+
+	table.insert(M.tracked_files, path)
+
+	-- Limit size
+	while #M.tracked_files > config.max_files do
+		table.remove(M.tracked_files, 1)
+	end
+end
+
+-- Go to file by index
+function M.goto_file(index)
+	local path = M.tracked_files[index]
+	if path and vim.fn.filereadable(path) == 1 then
+		vim.cmd.edit(path)
+	else
+		vim.notify("No valid file at slot " .. index, vim.log.levels.WARN)
+	end
+end
+
+-- Setup autocommands and config
+function M.setup(opts)
+	config = vim.tbl_deep_extend("force", config, opts or {})
+	M.tracked_files = {}
+
+	vim.api.nvim_create_autocmd("BufEnter", {
+		group = vim.api.nvim_create_augroup("FiveFiles", { clear = true }),
+		callback = function(args)
+			print("Tracking buffer: " .. vim.api.nvim_buf_get_name(args.buf))
+			M.track_buffer(args.buf)
+		end,
+	})
+end
+
+-- Reload the extension
+function M.reload()
+	print("Reloading FiveFiles...")
+	package.loaded["mama"] = nil
+	local ok, mod = pcall(require, "mama")
+	if ok then
+		vim.api.nvim_del_augroup_by_name("FiveFiles")
+		mod.setup(config)
+		vim.notify("FiveFiles reloaded!", vim.log.levels.INFO)
+	else
+		vim.notify("Failed to reload FiveFiles: " .. mod, vim.log.levels.ERROR)
+	end
+end
+
+-- List tracked files
+function M.list()
+	if #M.tracked_files == 0 then
+		vim.notify("FiveFiles: No tracked files", vim.log.levels.INFO)
+		return
+	end
+
+	local choices = {}
+	local path_to_index = {}
+
+	-- Filter out unreadable files
+	local valid_files = {}
+	for _, path in ipairs(M.tracked_files) do
+		if vim.fn.filereadable(path) == 1 then
+			table.insert(valid_files, path)
+		end
+	end
+	M.tracked_files = valid_files
+
+	for i, path in ipairs(M.tracked_files) do
+		local name = vim.fn.fnamemodify(path, ":~:.")
+		local entry = i .. ". " .. name
+		table.insert(choices, entry)
+		path_to_index[entry] = path
+	end
+
+	vim.ui.select(choices, {
+		prompt = "FiveFiles",
+	}, function(choice)
+		if choice then
+			local path = path_to_index[choice]
+			if path and vim.fn.filereadable(path) == 1 then
+				vim.cmd.edit(path)
+			else
+				vim.notify("Selected file is not readable", vim.log.levels.WARN)
+			end
+		end
+	end)
+end
+
+return M

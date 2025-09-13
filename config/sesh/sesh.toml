@@ -1,0 +1,19 @@
+[default_session]
+startup_command = "bash $HOME/.config/sesh/auto-run.sh"
+
+
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "ls"
+
+[[session]]
+name = "tmux config"
+path = "~/dotfiles/.config/tmux"
+startup_command = "nvim tmux.conf"
+
+[[session]]
+name = "tui's"
+path = "~"
+startup_command = "bash $HOME/.config/sesh/tui.sh"
+

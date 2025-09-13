@@ -1,0 +1,58 @@
+;; defsrc is still necessary
+(defcfg
+  process-unmapped-keys yes
+)
+
+;; example:
+;; =================
+;; (defsrc
+;;   caps
+;; )
+;;
+;; (deflayer base
+;;   (tap-hold 150 200 esc (layer-while-held layer2))
+;; )
+;; =================
+;; focus this is shit it's positional params 
+;; so "caps" => <first arg on the deflayer> so (tap-hold 150 200 esc (layer-while-held layer2))
+
+
+;; go to https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs => 172
+(defsrc
+  caps
+  esc
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(deflayer base
+  (tap-hold 150 200 esc (layer-while-held layer2))
+  `
+)
+
+(deflayermap (layer2)
+    h left
+    j down
+    k up
+    l right
+
+
+    1 F1
+    2 F2
+    3 F3
+    4 F4
+    5 F5
+    6 F6
+    7 F7
+    8 F8
+    9 F9
+    0 F10
+
+    x Delete
+    q Enter
+
+)
+

@@ -1,0 +1,437 @@
+{
+  "???\u000b? Next Page Component ???\u000b?": {
+    "prefix": "npc",
+    "body": [
+      "function ${1:name}Page() {",
+      "  $2",
+      "  return (",
+      "    <div>",
+      "      ${3:content}",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default ${1:name}Page;"
+    ],
+    "description": "Generates a Next.js page component with an editable name."
+  },
+  "???\u000b? Next Page Component with Props ???\u000b?": {
+    "prefix": "npcp",
+    "body": [
+      "type ${1:name}PageProps = {",
+      "  $2",
+      "};",
+      "",
+      "function ${1:name}Page({",
+      "  $3",
+      "}: ${1:name}PageProps) {",
+      "  $4",
+      "  return (",
+      "    <div>",
+      "      ${5:content}",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default ${1:name}Page;"
+    ],
+    "description": "Generates a Next.js page component with props type and an editable name."
+  },
+  "???\u000b? Next Page Component with Props and Params ???\u000b?": {
+    "prefix": "npcpp",
+    "body": [
+      "type ${1:name}Props = {",
+      "  params: {",
+      "    ${2:paramName}: string;",
+      "  }",
+      "};",
+      "",
+      "function ${1:name}Page({",
+      "  params",
+      "} : ${1:name}Props) {",
+      "  const { ${2:paramName} } = params;",
+      "  // Add component logic here...",
+      "  return (",
+      "    <div>",
+      "      $3",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default ${1:name}Page;"
+    ],
+    "description": "Generates a Next.js page component with props and params type and an editable name."
+  },
+  "???\u000b? Next Client Component ???\u000b?": {
+    "prefix": "ncc",
+    "body": [
+      "\"use client\"",
+      "",
+      "function ${TM_FILENAME_BASE}() {",
+      "  $1",
+      "  return <div>${TM_FILENAME_BASE}$2</div>;",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js client-side functional component based on file name."
+  },
+  "???\u000b? Next Client Component with Props ???\u000b?": {
+    "prefix": "nccp",
+    "body": [
+      "\"use client\"",
+      "",
+      "type ${TM_FILENAME_BASE}Props = {",
+      "  $1",
+      "};",
+      "",
+      "function ${TM_FILENAME_BASE}({ $2 }: ${TM_FILENAME_BASE}Props) {",
+      "  $3",
+      "  return <div>${TM_FILENAME_BASE}$4</div>;",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js TypeScript client-side functional component based on the file name."
+  },
+  "???\u000b? Next Hook ???\u000b?": {
+    "prefix": "nh",
+    "body": [
+      "\"use client\"",
+      "",
+      "function ${TM_FILENAME_BASE}() {",
+      "  $1",
+      "  return {};",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js client-side custom hook based on the file name."
+  },
+  "???\u000b? Next Hook with Props ???\u000b?": {
+    "prefix": "nhp",
+    "body": [
+      "\"use client\"",
+      "",
+      "type ${TM_FILENAME_BASE}Props = {",
+      "  $1",
+      "};",
+      "",
+      "function ${TM_FILENAME_BASE}({ $2 }: ${TM_FILENAME_BASE}Props) {",
+      "  $3",
+      "  return {};",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js TypeScript client-side custom hook with props based on the file name."
+  },
+  "???\u000b? Next Server Component ???\u000b?": {
+    "prefix": "nsc",
+    "body": [
+      "function ${TM_FILENAME_BASE}() {",
+      "  $1",
+      "  return <div>${TM_FILENAME_BASE}$2</div>;",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js server-side functional component based on the fileName."
+  },
+  "???\u000b? Next Server Component with Props ???\u000b?": {
+    "prefix": "nscp",
+    "body": [
+      "type ${TM_FILENAME_BASE}Props = {",
+      "  $1",
+      "};",
+      "",
+      "function ${TM_FILENAME_BASE}({ $2 }: ${TM_FILENAME_BASE}Props) {",
+      "  $3",
+      "  return <div>${TM_FILENAME_BASE}$4</div>;",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js TypeScript server-side functional component based on the file name."
+  },
+  "???\u000b? Next Async Server Component ???\u000b?": {
+    "prefix": "nasc",
+    "body": [
+      "async function ${TM_FILENAME_BASE}() {",
+      "  $1",
+      "  return <div>${TM_FILENAME_BASE}$2</div>;",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js async server-side functional component based on the file name."
+  },
+  "???\u000b? Next Async Server Component with Props ???\u000b?": {
+    "prefix": "nascp",
+    "body": [
+      "type ${TM_FILENAME_BASE}Props = {",
+      "  $1",
+      "};",
+      "",
+      "async function ${TM_FILENAME_BASE}({ $2 }: ${TM_FILENAME_BASE}Props) {",
+      "  $3",
+      "  return <div>${TM_FILENAME_BASE}$4</div>;",
+      "}",
+      "",
+      "export { ${TM_FILENAME_BASE} };"
+    ],
+    "description": "Generates a Next.js TypeScript async server-side functional component based on the file name."
+  },
+  "???\u000b? Next Loading Component ???\u000b?": {
+    "prefix": "nlc",
+    "body": [
+      "function Loading() {",
+      "  $1",
+      "  return (",
+      "    <div>",
+      "      $2",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default Loading;"
+    ],
+    "description": "Generates a Next.js Loading component based on next docs."
+  },
+  "???\u000b? Next Layout Component ???\u000b?": {
+    "prefix": "nlcp",
+    "body": [
+      "import type { ReactNode } from 'react';",
+      "",
+      "type LayoutProps = {",
+      "  children: ReactNode;",
+      "};",
+      "",
+      "function Layout({ children }: LayoutProps) {",
+      "  $1",
+      "  return (",
+      "    <section>",
+      "      {children}",
+      "    </section>",
+      "  );",
+      "}",
+      "",
+      "export default Layout;"
+    ],
+    "description": "Generates a Next.js Layout component based on next docs."
+  },
+  "???\u000b? Next Middleware ???\u000b?": {
+    "prefix": "nmw",
+    "body": [
+      "import { NextResponse } from 'next/server';",
+      "import type { NextRequest } from 'next/server';",
+      "",
+      "export function middleware(request: NextRequest) {",
+      "  return NextResponse.redirect(new URL('/', request.url));",
+      "}",
+      "",
+      "export const config = {",
+      "  matcher: '$1',",
+      "};"
+    ],
+    "description": "Generates a Next.js middleware with matcher configuration."
+  },
+  "???\u000b? Next Static Metadata ???\u000b?": {
+    "prefix": "nsmd",
+    "body": [
+      "import type { Metadata } from 'next';",
+      "",
+      "export const metadata: Metadata = {",
+      "  title: '$1',",
+      "};"
+    ],
+    "description": "Generates a Next.js static metadata function."
+  },
+  "???\u000b? Next Generated Metadata ???\u000b?": {
+    "prefix": "ngmd",
+    "body": [
+      "import type { Metadata } from 'next';",
+      "",
+      "type GenerateMetadataProps = {",
+      "  params: {",
+      "    $1: string",
+      "  }",
+      "};",
+      "",
+      "export function generateMetadata(",
+      "  { params }: GenerateMetadataProps",
+      "): Metadata {",
+      "  const $1 = params.$1;",
+      "",
+      "  return {",
+      "    title: $1,",
+      "  };",
+      "}"
+    ],
+    "description": "Generates a Next.js Metadata function using route params."
+  },
+  "???\u000b? Next Error Component ???\u000b?": {
+    "prefix": "nec",
+    "body": [
+      "'use client';",
+      "",
+      "import { useEffect } from 'react';",
+      "",
+      "type ErrorProps = {",
+      "  error: Error & { digest?: string };",
+      "  reset: () => void;",
+      "};",
+      "",
+      "function Error({ error, reset }: ErrorProps) {",
+      "  useEffect(() => {",
+      "    console.error(error);",
+      "  }, [error]);",
+      "",
+      "  $1",
+      "",
+      "  return (",
+      "    <div>",
+      "      <h2>{error.message}</h2>",
+      "      <button onClick={reset}>Try again</button>",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default Error;"
+    ],
+    "description": "Generates a simplified Next.js client error component with `error` and `reset` props."
+  },
+  "???\u000b? Next Global Error Component ???\u000b?": {
+    "prefix": "ngec",
+    "body": [
+      "'use client';",
+      "",
+      "import { useEffect } from 'react';",
+      "",
+      "type GlobalErrorProps = {",
+      "  error: Error & { digest?: string };",
+      "  reset: () => void;",
+      "};",
+      "",
+      "function GlobalError({ error, reset }: GlobalErrorProps) {",
+      "  useEffect(() => {",
+      "    console.error(error);",
+      "  }, [error]);",
+      "",
+      "  $1",
+      "",
+      "  return (",
+      "    <div>",
+      "      <h2>{error.message}</h2>",
+      "      <button onClick={reset}>Try again</button>",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default GlobalError;"
+    ],
+    "description": "Generates a simplified Next.js global error component with `error` and `reset` props."
+  },
+  "???\u000b? Next Not Found Component ???\u000b?": {
+    "prefix": "nnfc",
+    "body": [
+      "import Link from 'next/link';",
+      "",
+      "function NotFound() {",
+      "  $1",
+      "",
+      "  return (",
+      "    <div>",
+      "      <h2>Not Found</h2>",
+      "      <p>Could not find requested resource</p>",
+      "      <Link href=\"/\">Return Home</Link>",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "export default NotFound;"
+    ],
+    "description": "Generates a simplified Next.js 'Not Found' component."
+  },
+  "???\u000b? Next Async Server Action Function ???\u000b?": {
+    "prefix": "nsaf",
+    "body": ["async function $1() {", "  'use server';", "  $2", "}", ""],
+    "description": "Generates a Next.js async server-side action function"
+  },
+  "???\u000b? Next Async Server Action Component ???\u000b?": {
+    "prefix": "nasac",
+    "body": [
+      "'use server';",
+      "",
+      "async function ${TM_FILENAME_BASE}() {",
+      "  $1",
+      "  return <div>${TM_FILENAME_BASE}$2</div>;",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE};"
+    ],
+    "description": "Generates a Next.js async server-side action component based on the file name."
+  },
+  "???\u000b? Next Get Route ???\u000b?": {
+    "prefix": "ngetr",
+    "body": ["export async function GET(request: Request) {", "  $1", "}"],
+    "description": "Generates a Next.js GET route function."
+  },
+  "???\u000b? Next Head Route ???\u000b?": {
+    "prefix": "nheadr",
+    "body": ["export async function HEAD(request: Request) {", "  $1", "}"],
+    "description": "Generates a Next.js HEAD route function."
+  },
+  "???\u000b? Next Post Route ???\u000b?": {
+    "prefix": "npostr",
+    "body": ["export async function POST(request: Request) {", "  $1", "}"],
+    "description": "Generates a Next.js POST route function."
+  },
+  "???\u000b? Next Put Route ???\u000b?": {
+    "prefix": "nputr",
+    "body": ["export async function PUT(request: Request) {", "  $1", "}"],
+    "description": "Generates a Next.js PUT route function."
+  },
+  "???\u000b? Next Delete Route ???\u000b?": {
+    "prefix": "ndelete",
+    "body": ["export async function DELETE(request: Request) {", "  $1", "}"],
+    "description": "Generates a Next.js DELETE route function."
+  },
+  "???\u000b? Next Patch Route ???\u000b?": {
+    "prefix": "npatchr",
+    "body": ["export async function PATCH(request: Request) {", "  $1", "}"],
+    "description": "Generates a Next.js PATCH route function."
+  },
+  "???\u000b? Next Options Route ???\u000b?": {
+    "prefix": "noptionsr",
+    "body": ["export async function OPTIONS(request: Request) {", "  $1", "}"],
+    "description": "Generates a Next.js OPTIONS route function."
+  },
+  "???\u000b? Next Template Component ???\u000b?": {
+    "prefix": "ntc",
+    "body": [
+      "export default function Template({ children }: { children: React.ReactNode }) {",
+      "  return <div>{children}</div>",
+      "}"
+    ],
+    "description": "Generates a Next.js template.ts component."
+  },
+  "???\u000b? Next Robots File ???\u000b?": {
+    "prefix": "nrf",
+    "body": [
+      "import { MetadataRoute } from 'next'",
+      "",
+      "export default function robots(): MetadataRoute.Robots {",
+      "  return {",
+      "    rules: {",
+      "      userAgent: '*',",
+      "      allow: '/',",
+      "      disallow: '/private/',",
+      "    },",
+      "    sitemap: 'https://acme.com/sitemap.xml',",
+      "  }",
+      "}"
+    ],
+    "description": "Generates a Next.js robots.ts file."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "example-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "lua"
+        ],
+        "path": "./lua.json"
+      },
+      {
+        "language": [
+          "go"
+        ],
+        "path": "./go-vscode.json"
+      },
+      {
+        "language": [
+          "go"
+        ],
+        "path": "./go.json"
+      },
+      {
+        "language": [
+          "typescriptreact"
+        ],
+        "path": "./ts-react.json"
+      },
+      {
+        "language": [
+          "php"
+        ],
+        "path": "./php.json"
+      }
+    ]
+  }
+}
