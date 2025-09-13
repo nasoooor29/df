@@ -1,0 +1,11 @@
+/scripts
+/roles
+/library
+\.git
+\.gitignore
+\.yay-bin
+dockerfile
+makefile
+playbook.yml
+ansible.cfg
+^/README.md

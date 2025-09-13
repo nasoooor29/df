@@ -20,7 +20,7 @@ if [ ! -f "$GUM_PATH" ]; then
 fi
 
 # Detect distro
-DISTRO=$(source /etc/os-release && echo "$ID_LIKE")
+DISTRO=$(source /etc/os-release && echo "$ID")
 case "$DISTRO" in
 arch | endeavouros) PLATFORM="arch" ;;
 debian | ubuntu) PLATFORM="deb" ;;

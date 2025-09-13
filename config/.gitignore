@@ -1,0 +1,8 @@
+.config/nvim/lazy-lock.json
+.config/lazygit
+.config/go
+.config/composer
+.config/herd-lite
+.config/libreoffice
+.config/github-copilot
+.config/gopls/prompt

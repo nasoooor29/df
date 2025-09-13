@@ -1,4 +1,4 @@
 #!/bin/bash
 
-pacman -S $UNATTEND_INSTALL_PACMAN $INSTALL_NEEDED fzf
+sudo pacman -S $UNATTEND_INSTALL_PACMAN $INSTALL_NEEDED fzf
 

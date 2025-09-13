@@ -1,4 +1,4 @@
 #!/bin/bash
 
-pacman -S $UNATTEND_INSTALL_PACMAN $INSTALL_NEEDED waybar
+sudo pacman -S $UNATTEND_INSTALL_PACMAN $INSTALL_NEEDED waybar
 

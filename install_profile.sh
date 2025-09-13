@@ -48,7 +48,7 @@ blue "📥 Loading profile: $SELECTED_PROFILE"
 source "$PROFILE_FILE"
 
 # Verify platform compatibility
-CURRENT_DISTRO=$(source /etc/os-release && echo "$ID_LIKE")
+CURRENT_DISTRO=$(source /etc/os-release && echo "$ID")
 case "$CURRENT_DISTRO" in
 arch | endeavouros) CURRENT_PLATFORM="arch" ;;
 debian | ubuntu) CURRENT_PLATFORM="deb" ;;
