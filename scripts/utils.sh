@@ -22,5 +22,3 @@ error_handler() {
     red "$(basename $0) failed. Please fix the script."
     exit 1
 }
-
-trap error_handler ERR

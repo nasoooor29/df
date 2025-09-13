@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ./scripts/utils.sh
+source ./scripts/env.sh
 
 set -e
 
@@ -32,7 +33,7 @@ esac
 echo "🎯 Detected platform: $PLATFORM"
 
 # Dynamic categories and apps
-CATEGORIES=$(find ./install/$PLATFORM -type f -name "*.sh" | awk -F'/' '{print $NF}' | awk -F'_' '{print $1}' | sort | uniq)
+CATEGORIES=$(find ./install/$PLATFORM -type f -name "*.sh" ! -name "[0-9][0-9]_*.sh" | awk -F'/' '{print $NF}' | awk -F'_' '{print $1}' | sort | uniq)
 SELECTED=()
 
 while true; do
@@ -73,10 +74,28 @@ while true; do
   done
 done
 
+# Run preflight scripts in order
+PREFLIGHT_SCRIPTS=$(find ./scripts -type f -name "preflight_*.sh" | sort)
+for script in $PREFLIGHT_SCRIPTS; do
+  blue "➡️  Running preflight script: $(basename $script)"
+  bash "$script"
+  green "✅ Completed: $(basename $script)"
+done
+
+# Run static scripts in order
+STATIC_SCRIPTS=$(find ./install/$PLATFORM -type f -name "[0-9][0-9]_*.sh" | sort)
+for script in $STATIC_SCRIPTS; do
+  blue "➡️  Running static script: $(basename $script)"
+  bash "$script"
+  green "✅ Completed: $(basename $script)"
+done
+
 # Run selected scripts
 for script in "${SELECTED[@]}"; do
   blue "➡️  Installing: $script"
   echo "Downloading app '$script' for distro '$PLATFORM' ..."
+  echo "$script" >> installed_packages.log
+  echo "./install/$PLATFORM/$script.sh" >> installed_packages.log
   bash "./install/$PLATFORM/$script.sh"
   green "✅ Installed: $script"
 done
