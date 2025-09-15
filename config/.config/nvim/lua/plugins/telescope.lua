@@ -131,7 +131,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
 		vim.keymap.set("n", "<leader>fd", function()
 			builtin.find_files({
-				cwd = "~/dotfiles",
+				cwd = "~/df/config",
 				no_ignore = false,
 				hidden = true,
 				file_ignore_patterns = {
