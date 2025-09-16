@@ -1,0 +1,106 @@
+configuration {
+    show-icons:                  true;
+    font:                        "JetBrainsMono NF Bold 11";
+}
+@import "./mocha.rasi"
+
+//----- Global Properties -----//
+
+* {
+    main-bg: @surface0;
+    main-fg: @overlay0;
+    select-bg: @mauve;
+    select-fg: @crust;
+}
+
+//----- Main Window -----//
+
+window {
+    enabled:                     true;
+    fullscreen:                  false;
+    width:                       100%;
+    transparency:                "real";
+    cursor:                      "default";
+    spacing:                     0px;
+    padding:                     0px;
+    border:                      0px;
+    border-radius:               0px;
+    border-color:                transparent;
+    background-color:            transparent;
+}
+
+//----- Main Box -----//
+
+mainbox {
+    enabled:                     true;
+    children:                    [ "inputbar", "listview" ];
+    background-color:            @main-bg;
+}
+
+inputbar {
+    padding:    1px ;
+    spacing:    0px ;
+    text-color: @normal-foreground;
+    children:   [ "prompt","textbox-prompt-colon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
+}
+
+//----- Listview -----//
+
+listview {
+    enabled:                     true;
+    columns:                     8;
+    lines:                       4;
+    spacing:                     10px;
+    padding:                     20px 30px;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    cursor:                      "default";
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+
+//----- Elements -----//
+
+element {
+    enabled:                     true;
+    orientation:                 vertical;
+    spacing:                     10px;
+    padding:                     10px;
+    border-radius:               10px;
+    cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+
+@media(max-aspect-ratio: 1.8) {
+    element {
+        orientation:             vertical;
+    }
+}
+
+element selected.normal {
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
+}
+
+element-icon {
+    size:                        64px;
+    cursor:                      inherit;
+    border-radius:               0px;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+element-text {
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    padding:                     5px;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
