@@ -10,22 +10,27 @@ penny_worktree() {
   # Set the original repo path
   original_repo=~/repos/penny
 
-  # Get the branch name from the first CLI argument
+  # Get the branch name and original branch from CLI arguments
   branch_name="$1"
+  original_branch="$2"
   if [ -z "$branch_name" ]; then
-    echo "Error: branch name is required." >&2
-    exit 1
+    echo "Error: new branch name is required." >&2
+    return 0
+  fi
+  if [ -z "$original_branch" ]; then
+    echo "Error: original branch is required." >&2
+    return 0
   fi
 
-  # Construct the branch name
+  # Construct the worktree path
   worktree_path="../${branch_name//\//-}"
   echo "[INFO] Worktree path will be: $worktree_path"
 
-  # Create the branch from develop
-  echo "[INFO] Fetching 'develop' from origin..."
-  git fetch origin develop
-  echo "[INFO] Creating branch '$branch_name' from 'origin/develop'..."
-  git branch "$branch_name" origin/develop
+  # Fetch the original branch from origin
+  echo "[INFO] Fetching '$original_branch' from origin..."
+  git fetch origin "$original_branch"
+  echo "[INFO] Creating branch '$branch_name' from 'origin/$original_branch'..."
+  git branch "$branch_name" "origin/$original_branch"
 
   # Add the worktree for the new branch
   echo "[INFO] Adding worktree at '$worktree_path' for branch '$branch_name'..."
@@ -33,7 +38,8 @@ penny_worktree() {
 
   # Copy necessary files
   echo "[INFO] Copying node_modules..."
-  cp "$original_repo/node_modules" "$worktree_path/node_modules" -r
+  # Use a symbolic link instead of a hard link for directories
+  ln -s "$original_repo/node_modules" "$worktree_path/node_modules"
   echo "[INFO] Copying base.env (docker-compose)..."
   cp "$original_repo/scripts/docker-compose/base.env" "$worktree_path/scripts/docker-compose/base.env"
   echo "[INFO] Copying base.env (libs/environments)..."
