@@ -1,15 +1,38 @@
 #!/usr/bin/env bash
 
-# Kill any running wofi instances
-pkill -x wofi && return
+# Kill any running rofi instances
+pkill -x rofi && exit
 
-actions=$(echo -e "   Lock\n   Shutdown\n   Reboot\n $(printf '\u200A')  Suspend\n   Hibernate\n   Logout")
+# Define actions
+actions="  Lock
+  Shutdown
+  Reboot
+  Suspend
+  Hibernate
+  Logout"
 
-# Display logout menu
-# wofi -d --style ~/.config/wofi/themes/mocha.css --conf ~/.config/wofi/config-no-bar -W 30 -l 3 -x -190 -H 300
-selected_option=$(echo -e "$actions" | wofi -d --style ~/.config/wofi/themes/mocha.css --conf ~/.config/wofi/config-no-bar -W 30 -l 3 -x -190 -H 300)
-
-# Perform actions based on the selected option
+# Show menu with rofi
+selected_option=$(echo -e "$actions" | rofi -dmenu -i -p "" \
+  -theme-str '
+    window {
+      anchor: north east;
+      location: northeast;
+      width: 20%;
+      y-offset: 10px;
+      x-offset: -10px;
+    }
+    entry {
+      enabled: false;
+    }
+    listview {
+      scrollbar: false;
+      fixed-height: false;
+    }
+    prompt {
+      enabled: false;
+    }
+  ')
+# Perform action
 case "$selected_option" in
 *Lock)
   hyprlock
