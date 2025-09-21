@@ -10,25 +10,47 @@ GUM_PATH="$HOME/.local/share/dotty/bin/gum"
 export PATH="$HOME/.local/share/dotty/bin:$PATH"
 if [ ! -f "$GUM_PATH" ]; then
   echo "Gum binary not found. Installing gum..."
-  mkdir -p $HOME/.local/share/dotty
+  mkdir -p $HOME/.local/share/dotty/bin
   cd $HOME/.local/share/dotty
-  wget https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Linux_x86_64.tar.gz
-  tar -xzf gum_0.17.0_Linux_x86_64.tar.gz
-  mv gum_0.17.0_Linux_x86_64/gum $HOME/.local/share/dotty/bin/
-  chmod +x gum
-  rm -rf gum_0.17.0_Linux_x86_64 gum_0.17.0_Linux_x86_64.tar.gz
+  
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS installation
+    if [[ $(uname -m) == "arm64" ]]; then
+      curl -LO https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Darwin_arm64.tar.gz
+      tar -xzf gum_0.17.0_Darwin_arm64.tar.gz
+      mv gum_0.17.0_Darwin_arm64/gum $HOME/.local/share/dotty/bin/
+      rm -rf gum_0.17.0_Darwin_arm64 gum_0.17.0_Darwin_arm64.tar.gz
+    else
+      curl -LO https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Darwin_x86_64.tar.gz
+      tar -xzf gum_0.17.0_Darwin_x86_64.tar.gz
+      mv gum_0.17.0_Darwin_x86_64/gum $HOME/.local/share/dotty/bin/
+      rm -rf gum_0.17.0_Darwin_x86_64 gum_0.17.0_Darwin_x86_64.tar.gz
+    fi
+    chmod +x $HOME/.local/share/dotty/bin/gum
+  else
+    # Linux installation
+    wget https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Linux_x86_64.tar.gz
+    tar -xzf gum_0.17.0_Linux_x86_64.tar.gz
+    mv gum_0.17.0_Linux_x86_64/gum $HOME/.local/share/dotty/bin/
+    chmod +x $HOME/.local/share/dotty/bin/gum
+    rm -rf gum_0.17.0_Linux_x86_64 gum_0.17.0_Linux_x86_64.tar.gz
+  fi
 fi
 
-# Detect distro
-DISTRO=$(source /etc/os-release && echo "$ID")
-case "$DISTRO" in
-arch | endeavouros) PLATFORM="arch" ;;
-debian | ubuntu) PLATFORM="deb" ;;
-*)
-  red "❌ Unsupported distro: $DISTRO"
-  exit 1
-  ;;
-esac
+# Detect platform
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  PLATFORM="mac"
+else
+  DISTRO=$(source /etc/os-release && echo "$ID")
+  case "$DISTRO" in
+  arch | endeavouros) PLATFORM="arch" ;;
+  debian | ubuntu) PLATFORM="deb" ;;
+  *)
+    red "❌ Unsupported distro: $DISTRO"
+    exit 1
+    ;;
+  esac
+fi
 
 echo "🎯 Detected platform: $PLATFORM"
 
