@@ -6,19 +6,16 @@ penny_tmux() {
     \; select-pane -R \; split-window -v \; send-keys 'cd scripts/docker-compose; sed -i "s/platform: linux\/arm64\/v8/platform: linux\/amd64/g" docker-compose.yaml; docker compose up' C-m \
     \; select-layout tiled
 }
+
 penny_worktree() {
   # Set the original repo path
-  original_repo=~/repos/penny
+  original_repo="/Users/naser/Desktop/dev/penny"
 
   # Get the branch name and original branch from CLI arguments
   branch_name="$1"
   original_branch="$2"
-  if [ -z "$branch_name" ]; then
-    echo "Error: new branch name is required." >&2
-    return 0
-  fi
-  if [ -z "$original_branch" ]; then
-    echo "Error: original branch is required." >&2
+  if [ -z "$branch_name" ] || [ -z "$original_branch" ]; then
+    echo "Usage: penny_worktree <new-branch-name> <original-branch>" >&2
     return 0
   fi
 
@@ -46,5 +43,7 @@ penny_worktree() {
   cp "$original_repo/libs/environments/src/lib/base/env/base.env" "$worktree_path/libs/environments/src/lib/base/env/base.env"
 
   # echo "[INFO] Connecting to new worktree session at '$worktree_path'..."
-  sesh connect "$worktree_path"
+  # sesh connect "$worktree_path"
+  echo "[INFO] running: code $worktree_path"
+  code "$worktree_path"
 }
