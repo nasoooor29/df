@@ -172,6 +172,7 @@ up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
 
 
+# mdls -name kMDItemCFBundleIdentifier /Applications/YourApp.app
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = ['move-node-to-workspace 3']
