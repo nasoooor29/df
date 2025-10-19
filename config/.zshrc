@@ -60,3 +60,15 @@ if [ -f '/home/nasoooor/.GCP/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nas
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/nasoooor/.GCP/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nasoooor/.GCP/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="$PATH:/Users/naser/Library/Python/3.9/bin"
+# pnpm
+export PNPM_HOME="/Users/naser/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+export NODE_OPTIONS='--max-old-space-size=8192'
+
+# bun completions
+[ -s "/Users/naser/.bun/_bun" ] && source "/Users/naser/.bun/_bun"

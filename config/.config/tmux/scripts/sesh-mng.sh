@@ -22,7 +22,7 @@ fi
 
 if [[ "$CHOOSEN" == "[PLAYGROUND]"* ]]; then
     CHOOSEN_NO_PREFIX="${CHOOSEN#\[PLAYGROUND\] }"
-    $HOME/dotfiles/.config/tmux/scripts/playground/playground.sh "$CHOOSEN_NO_PREFIX"
+    $HOME/.config/tmux/scripts/playground/playground.sh "$CHOOSEN_NO_PREFIX"
 else
     sesh connect $CHOOSEN
 fi

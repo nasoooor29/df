@@ -4,7 +4,7 @@
 BASE_DIR="$HOME/repos/playground"
 rm -rf "${BASE_DIR:?}/*"
 
-BASE_PLAGROUND="$HOME/dotfiles/.config/tmux/scripts/playground"
+BASE_PLAGROUND="$HOME/.config/tmux/scripts/playground"
 PLAYGROUND_LANGS="$BASE_PLAGROUND/langs"
 SESSION_NAME="playground"
 
