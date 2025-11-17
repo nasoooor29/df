@@ -1,10 +1,10 @@
 return {
 	-- Main LSP Configuration
-	"saghen/blink.cmp",
+	"neovim/nvim-lspconfig",
 	dependencies = { -- Automatically install LSPs and related tools to stdpath for Neovim
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
+		"saghen/blink.cmp",
 	},
 	config = function()
 		local servers = require("servers")
