@@ -9,6 +9,26 @@
 -- 		opts = {},
 -- 	},
 -- }
+
+-- return {
+-- 	"A7Lavinraj/fyler.nvim",
+-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+-- 	opts = { icon_provider = "nvim_web_devicons" },
+-- 	config = function()
+-- 		-- Toggle Fyler with optional settings
+--
+-- 		local fyler = require("fyler")
+-- 		vim.keymap.set("n", "<leader>fe",
+-- 			function()
+-- 				fyler.open()
+-- 				-- fyler.toggle({
+-- 				-- 	kind = "split_right_most" -- (Optional) Use custom window layout
+-- 				-- })
+-- 			end
+-- 		)
+-- 	end
+-- }
+
 return {
 	"stevearc/oil.nvim",
 	---@module 'oil'

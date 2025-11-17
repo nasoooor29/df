@@ -35,6 +35,7 @@ return {
 
 				["<A-k>"] = { "select_prev", "fallback" },
 				["<A-j>"] = { "select_next", "fallback" },
+				["<C-Space>"] = { "show", "hide" },
 			},
 
 			appearance = {

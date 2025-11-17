@@ -10,6 +10,9 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		local is_big = stats.size > max_filesize
 		local output = vim.fn.system({ "file", "--mime", args.file })
 		local is_binary = output:match("charset=binary") ~= nil
+		if not is_big then
+			return 
+		end
 
 		if is_big or is_binary then
 			local reason = is_big and "large file" or "binary file"
