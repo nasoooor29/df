@@ -1,8 +1,8 @@
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-weight: bold;
-  font-size: 14px;
-  min-height: 22px;
+  font-size: 12px;
+  min-height: 10px;
 }
 
 @import "theme.css";
@@ -45,7 +45,7 @@ tooltip label {
   box-shadow: none;
   margin: 2px 0;
   margin-top: 0;
-  padding: 0 16px;
+  padding: 0 12px;
   transition: none;
 }
 
@@ -65,7 +65,7 @@ tooltip label {
   /* box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4); */
   /* margin: 2px; */
   border-radius: 0px;
-  padding: 0 16px;
+  padding: 0 10px;
 }
 
 /* === General === */
@@ -400,12 +400,12 @@ tooltip label {
   text-shadow: none;
   box-shadow: none;
 }
-#battery.critical:not(.charging)
-{
-  color                     : @critical;
-  animation-name            : blink;
-  animation-duration        : 0.2s;
-  animation-timing-function : linear;
-  animation-iteration-count : infinite;
-  animation-direction       : alternate;
+
+#battery.critical:not(.charging) {
+  color: @critical;
+  animation-name: blink;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
