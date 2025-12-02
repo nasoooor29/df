@@ -6,7 +6,6 @@ return { -- Autoformat
 		{
 			"<leader>f",
 			function()
-				vim.cmd("wa")
 				require("conform").format({ async = true, lsp_format = "fallback" })
 			end,
 			mode = "",
@@ -38,6 +37,7 @@ return { -- Autoformat
 			typescriptreact = { "prettier" },
 			javascript = { "prettier" },
 			json = { "prettier" },
+			jsonc = { "prettier" },
 			html = { "prettier" },
 			htmlangular = { "prettier" },
 			typescript = { "prettier" },

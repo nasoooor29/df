@@ -54,7 +54,7 @@ vim.filetype.add({
 })
 
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = true,
 })
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"

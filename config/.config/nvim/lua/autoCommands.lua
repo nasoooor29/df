@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		local output = vim.fn.system({ "file", "--mime", args.file })
 		local is_binary = output:match("charset=binary") ~= nil
 		if not is_big then
-			return 
+			return
 		end
 
 		if is_big or is_binary then
@@ -25,6 +25,33 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 			if choice ~= 1 then
 				vim.cmd("bdelete " .. args.buf)
 			end
+		end
+	end,
+})
+
+-- create an augroup to keep things clean
+local group = vim.api.nvim_create_augroup("CursorCentering", {})
+
+-- Disable k/j centering for filetype = fyler
+vim.api.nvim_create_autocmd("FileType", {
+	group = group,
+	pattern = "fyler",
+	callback = function(ev)
+		-- remove the maps in this buffer
+		vim.keymap.del("n", "k", { buffer = ev.buf })
+		vim.keymap.del("n", "j", { buffer = ev.buf })
+	end,
+})
+
+-- Enable k/j centering for all other filetypes
+vim.api.nvim_create_autocmd("FileType", {
+	group = group,
+	pattern = "*",
+	callback = function(ev)
+		local ft = vim.bo[ev.buf].filetype
+		if ft ~= "fyler" then
+			vim.keymap.set("n", "k", "kzz", { buffer = ev.buf })
+			vim.keymap.set("n", "j", "jzz", { buffer = ev.buf })
 		end
 	end,
 })

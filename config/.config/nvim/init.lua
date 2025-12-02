@@ -1,10 +1,7 @@
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "grn")
 require("opts")
 require("keymaps")
 require("wsl")
+require("utils")
 require("autoCommands")
 -- require("multiCursor")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

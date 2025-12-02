@@ -1,12 +1,17 @@
 -- TIP: Disable arrow keys in normal mode
-require("multiCursor")
+-- require("multiCursor")
+
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")
 
 local opts = { noremap = false, silent = true }
 
-vim.keymap.set({ "n" }, "<laader>e", "<cmd>e<CR>", {
-	noremap = true,
-	silent = true,
-}) -- vim
+-- vim.keymap.set({ "n" }, "<laader>e", "<cmd>e<CR>", {
+-- 	noremap = true,
+-- 	silent = true,
+-- }) -- vim
 vim.keymap.set("n", "<ESC>", "<cmd>noh<CR>", opts)
 -- vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>', opts)
 -- vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>', opts)
@@ -26,9 +31,9 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", opts)
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
 
--- cursor middle
-vim.keymap.set("n", "k", "kzz", opts)
-vim.keymap.set("n", "j", "jzz", opts)
+-- -- cursor middle
+-- vim.keymap.set("n", "k", "kzz", opts)
+-- vim.keymap.set("n", "j", "jzz", opts)
 
 -- file save and quitting mappings
 vim.keymap.set({ "n", "v" }, "<laader>ww", "<cmd>wa<CR>", opts) -- vim
