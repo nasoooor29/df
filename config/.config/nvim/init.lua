@@ -1,8 +1,8 @@
 require("opts")
+
 require("keymaps")
 require("wsl")
 require("utils")
-require("autoCommands")
 -- require("multiCursor")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -30,3 +30,4 @@ require("lazy").setup({
 		colorscheme = { "catppuccin-mocha" },
 	},
 })
+require("autoCommands")

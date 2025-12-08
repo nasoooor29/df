@@ -39,6 +39,8 @@ return {
 		u.NXVset("<c-leftdrag>", mc.handleMouseDrag, "Add cursors with mouse drag")
 		u.NXVset("<c-leftrelease>", mc.handleMouseRelease, "Finish adding cursors with mouse")
 
+		u.NXset("<leader>A", mc.matchAllAddCursors, "Match all word/selection in the document")
+
 		-- Disable and enable cursors.
 		u.NXVset("<c-q>", mc.toggleCursor, "Toggle multi-cursor")
 

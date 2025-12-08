@@ -15,7 +15,11 @@ return {
 	-- enabled = false,
 	config = function()
 		-- require("nui").setup()
-		-- require("nvim-notify").setup()
+		--
+		require("notify").setup({
+
+			background_colour = "#000000",
+		})
 		require("noice").setup({
 			messages = {
 				enabled = true, -- enables the Noice messages UI
