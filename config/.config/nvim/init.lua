@@ -1,5 +1,4 @@
 require("opts")
-
 require("keymaps")
 require("wsl")
 require("utils")
