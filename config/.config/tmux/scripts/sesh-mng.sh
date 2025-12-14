@@ -7,7 +7,7 @@ CHOOSEN=$(
         --no-sort --ansi --border-label ' sesh ' --prompt '  ' --border=rounded \
         --bind "tab:down,btab:up" \
         --bind "alt-1:change-prompt(  )+reload(sesh list -t)" \
-        --bind "alt-2:change-prompt(  )+reload(sesh list -z)" \
+        --bind "alt-2:change-prompt(  )+reload(sesh list -z; find ~/repos -maxdepth 1 )" \
         --bind "alt-3:change-prompt(  )+reload(echo -e \"$COMMAND\")" \
         --bind 'alt-4:change-prompt(  )+reload(sesh list -c --icons)' \
         --bind "alt-d:execute(tmux kill-session -t {})+change-prompt(  )+reload(sesh list -t)" \
