@@ -32,6 +32,8 @@ return {
 
 			local accent = "#cba6f7"
 			vim.diagnostic.config({
+				severity_sort = true,
+				virtual_lines = true,
 				float = {
 					scope = "cursor",
 					border = "rounded",

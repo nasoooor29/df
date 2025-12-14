@@ -16,7 +16,12 @@ return {
 		},
 		build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
 		config = function()
-			require("mcphub").setup()
+			require("mcphub").setup({
+				-- workspace = {
+				--
+				-- 	look_for = { ".mcphub/servers.json", ".vscode/mcp.json", ".cursor/mcp.json", "opencode.json" }, -- Files to look for when detecting project boundaries (VS Code format supported)
+				-- },
+			})
 		end,
 	},
 
@@ -75,12 +80,16 @@ return {
 			vim.keymap.set("n", "<leader>ag", function()
 				require("codecompanion").prompt("git_commit")
 			end, { noremap = true, silent = true, desc = "Code Companion: Git Commit Message" })
+			vim.keymap.set("n", "<leader>ags", function()
+				require("codecompanion").prompt("git_commit_staged")
+			end, { noremap = true, silent = true, desc = "Code Companion: Git Commit Message Staged" })
 			vim.keymap.set(
 				"n",
 				"<leader>cc",
 				"<cmd>CodeCompanionChat Toggle<cr>",
 				{ noremap = true, silent = true, desc = "Code Companion: Toggle Chat" }
 			)
+
 			vim.keymap.set(
 				{ "v", "n" },
 				"<leader>ae",
@@ -148,7 +157,21 @@ return {
 						prompts = {
 							{
 								role = "user",
-								content = [[use the @{get_changed_files} tool and give me consice git msg and commit the changes using the @{cmd_runner} tool.]],
+								content = [[use the @{get_changed_files} tool and give me git msg and commit the changes using the @{cmd_runner} tool.]],
+							},
+						},
+					},
+					["Git Commiter Staged"] = {
+						strategy = "chat",
+						description = "Auto Detect git commit message for staged files",
+						opts = {
+							auto_submit = true,
+							short_name = "git_commit_staged",
+						},
+						prompts = {
+							{
+								role = "user",
+								content = [[use the @{get_changed_files} or @{cmd_runner} and give me git msg and commit the changes using the @{cmd_runner} tool.]],
 							},
 						},
 					},
