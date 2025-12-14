@@ -1,10 +1,13 @@
+ConfigFile = '/home/nasoooor/.config/lazysql/config.toml'
+
 [application]
 DefaultPageSize = 300
 DisableSidebar = false
+SidebarOverlay = false
 
 [[database]]
 Name = 'data.db'
-URL = 'data.db'
+URL = 'visory.db'
 Provider = 'sqlite3'
 Username = ''
 Password = ''
