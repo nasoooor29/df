@@ -20,7 +20,8 @@ gwt() {
 
   # Check if branch exists
   if git show-ref --verify --quiet refs/heads/$branch; then
-    read -p "Branch $branch exists. Delete it? [y/N]: " yn
+    echo -n "Branch $branch exists. Delete it? [y/N]: "
+    read yn
     if [[ $yn =~ ^[Yy]$ ]]; then
       git branch -D "$branch"
     else
