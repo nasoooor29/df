@@ -23,6 +23,14 @@ customCommands:
           preset: 'branches'
     command: 'bash $HOME/.config/lazygit/git-worktree-new {{.Form.Branch | quote}}'
 
+
+# NOTE: add custom command for:
+# - create new private or public repo if no remote is set
+# - create a PR aginst
+# - see the git diff-tool thing (put nvim as the default)
+# - add create PR etc support
+
 git:
   pagers:
     - pager: delta --dark --paging=never
+
