@@ -29,6 +29,7 @@ customCommands:
 # - create a PR aginst
 # - see the git diff-tool thing (put nvim as the default)
 # - add create PR etc support
+# - checkout a PR using gh
 
 git:
   pagers:
