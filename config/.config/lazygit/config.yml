@@ -23,9 +23,45 @@ customCommands:
           preset: 'branches'
     command: 'bash $HOME/.config/lazygit/git-worktree-new {{.Form.Branch | quote}}'
 
+  - key: '<c-r>'
+    description: 'Create GitHub repo if no remote'
+    context: 'status'
+    output: terminal
+    prompts:
+      - type: 'menu'
+        title: 'Repository visibility'
+        key: 'Visibility'
+        options:
+          - name: 'Private'
+            description: 'Only you / org members'
+            value: '--private'
+            key: 'p'
+          - name: 'Public'
+            description: 'Visible to everyone'
+            value: '--public'
+            key: 'u'
+      - type: 'input'
+        title: 'Repository name'
+        key: 'RepoName'
+        initialValue: "{{ runCommand \"sh -c 'basename $(git rev-parse --show-toplevel)'\" }}"
+    command: >
+      bash -c '
+        if git remote get-url origin >/dev/null 2>&1; then
+          echo "❌ Remote already exists. Aborting."
+          exit 1
+        fi
+
+        branch=$(git branch --show-current)
+
+        gh repo create "{{.Form.RepoName}}" {{.Form.Visibility}} \
+          --source=. \
+          --remote=origin \
+          --push
+
+        echo "✅ Repository {{.Form.RepoName}} created and pushed ($branch)"
+      '
 
 # NOTE: add custom command for:
-# - create new private or public repo if no remote is set
 # - create a PR aginst
 # - see the git diff-tool thing (put nvim as the default)
 # - add create PR etc support
