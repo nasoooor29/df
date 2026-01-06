@@ -13,7 +13,7 @@ source ~/.zsh/ext.zsh
 source ~/.zsh/env.zsh
 source ~/.zsh/penny.sh
 source ~/.env
-source ~/.zsh/git.sh
+# source ~/.zsh/git.sh
 
 
 export EDITOR='nvim'

@@ -4,8 +4,25 @@ customCommands:
     command: aicommit2
     context: files
     output: terminal
+
   - key: <c-n>
     description: Pick AI commit (no verify)
     command: aicommit2 --no-verify
     context: files
     output: terminal
+
+  - key: <c-w>
+    description: 'Create worktree for new branch'
+    context: 'localBranches'
+    output: terminal
+    prompts:
+      - type: 'input'
+        title: 'New branch name'
+        key: 'Branch'
+        suggestions:
+          preset: 'branches'
+    command: 'bash $HOME/.config/lazygit/git-worktree-new {{.Form.Branch | quote}}'
+
+git:
+  pagers:
+    - pager: delta --dark --paging=never
