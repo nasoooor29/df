@@ -12,7 +12,7 @@ source ~/.zsh/alias.zsh
 source ~/.zsh/ext.zsh
 source ~/.zsh/env.zsh
 source ~/.zsh/penny.sh
-source ~/.env
+# source ~/.env
 # source ~/.zsh/git.sh
 
 
