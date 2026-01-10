@@ -41,6 +41,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					"--glob=!**/.vscode/*",
 					"--glob=!**/build/*",
 					"--glob=!**/dist/*",
+					"--glob=!**/target/*",
 					"--glob=!**/yarn.lock",
 					"--glob=!**/**.xlf",
 					"--glob=!**/**.XLF",
