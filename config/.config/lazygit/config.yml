@@ -46,6 +46,10 @@ customCommands:
         initialValue: "{{ runCommand \"sh -c 'basename $(git rev-parse --show-toplevel)'\" }}"
     command: >
       bash -c '
+        # clear GITHUB_TOKEN env var first
+        GITHUB_TOKEN=""
+
+        
         if git remote get-url origin >/dev/null 2>&1; then
           echo "❌ Remote already exists. Aborting."
           exit 1
