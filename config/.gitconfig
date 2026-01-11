@@ -25,3 +25,9 @@
 [merge]
     conflictStyle = zdiff3
 
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+    tool = nvimdiff

@@ -7,7 +7,7 @@ customCommands:
 
   - key: <c-n>
     description: Pick AI commit (no verify)
-    command: aicommit2 --no-verify
+    command: aicommit2 --include-body --auto-select
     context: files
     output: terminal
 
@@ -66,10 +66,10 @@ customCommands:
       '
 
 # NOTE: add custom command for:
-# - create a PR aginst
-# - see the git diff-tool thing (put nvim as the default)
-# - add create PR etc support
-# - checkout a PR using gh
+# - [ ] create a PR aginst
+# - [x] see the git diff-tool thing (put nvim as the default)
+# - [ ] add create PR etc support
+# - [ ] checkout a PR using gh
 
 git:
   pagers:

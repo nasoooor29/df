@@ -3,46 +3,44 @@ return {
 	branch = "1.0",
 	config = function()
 		local mc = require("multicursor-nvim")
-		local u = require("utils")
+		local key = require("utils").new("MultiCursor")
 		mc.setup()
 
 		-- Add or skip cursor above/below the main cursor.
-		u.NXVset("<C-up>", function()
+		key.NXVset("<C-up>", function()
 			mc.lineAddCursor(-1)
-		end, "Add cursor above")
-		u.NXVset("<c-down>", function()
+		end)
+		key.NXVset("<c-down>", function()
 			mc.lineAddCursor(1)
 		end, "Add cursor below")
-		u.NXVset("<leader><up>", function()
+		key.NXVset("<leader><up>", function()
 			mc.lineSkipCursor(-1)
 		end, "Skip cursor above")
-		u.NXVset("<leader><down>", function()
+		key.NXVset("<leader><down>", function()
 			mc.lineSkipCursor(1)
 		end, "Skip cursor below")
 
 		-- Add or skip adding a new cursor by matching word/selection
-		u.NXVset("<leader>n", function()
+		key.NXVset("<leader>n", function()
 			mc.matchAddCursor(1)
 		end, "Add cursor to next match")
-		u.NXVset("<leader>s", function()
+		key.NXVset("<leader>s", function()
 			mc.matchSkipCursor(1)
 		end, "Skip next match")
-		u.NXVset("<leader>N", function()
+		key.NXVset("<leader>N", function()
 			mc.matchAddCursor(-1)
 		end, "Add cursor to previous match")
-		u.NXVset("<leader>S", function()
+		key.NXVset("<leader>S", function()
 			mc.matchSkipCursor(-1)
 		end, "Skip previous match")
 
 		-- Add and remove cursors with control + left click.
-		u.NXVset("<c-leftmouse>", mc.handleMouse, "Add cursor with mouse")
-		u.NXVset("<c-leftdrag>", mc.handleMouseDrag, "Add cursors with mouse drag")
-		u.NXVset("<c-leftrelease>", mc.handleMouseRelease, "Finish adding cursors with mouse")
-
-		u.NXset("<leader>A", mc.matchAllAddCursors, "Match all word/selection in the document")
-
+		key.NXVset("<c-leftmouse>", mc.handleMouse)
+		key.NXVset("<c-leftdrag>", mc.handleMouseDrag)
+		key.NXVset("<c-leftrelease>", mc.handleMouseRelease)
+		key.NXset("<leader>A", mc.matchAllAddCursors)
+		key.NXVset("<c-q>", mc.toggleCursor)
 		-- Disable and enable cursors.
-		u.NXVset("<c-q>", mc.toggleCursor, "Toggle multi-cursor")
 
 		-- Mappings defined in a keymap layer only apply when there are
 		-- multiple cursors. This lets you have overlapping mappings.
