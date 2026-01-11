@@ -1,15 +1,9 @@
 customCommands:
-  - key: <c-a>
-    description: Pick AI commit
-    command: aicommit2
-    context: files
-    output: terminal
-
   - key: <c-n>
-    description: Pick AI commit (no verify)
+    description: Pick AI commit (auto-select)
     command: aicommit2 --include-body --auto-select
     context: files
-    output: terminal
+    output: logWithPty
 
   - key: <c-w>
     description: 'Create worktree for new branch'
