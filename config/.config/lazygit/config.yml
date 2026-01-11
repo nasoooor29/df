@@ -20,7 +20,7 @@ customCommands:
   - key: '<c-r>'
     description: 'Create GitHub repo if no remote'
     context: 'status'
-    output: terminal
+    output: logWithPty
     prompts:
       - type: 'menu'
         title: 'Repository visibility'
