@@ -27,28 +27,28 @@ return {
 	keys = {
 		-- Basic debugging keymaps, feel free to change to your liking!
 		{
-			"<F5>",
+			"<leader>dc",
 			function()
 				require("dap").continue()
 			end,
 			desc = "Debug: Start/Continue",
 		},
 		{
-			"<F1>",
+			"<leader>dsi",
 			function()
 				require("dap").step_into()
 			end,
 			desc = "Debug: Step Into",
 		},
 		{
-			"<F2>",
+			"<leader>dso",
 			function()
 				require("dap").step_over()
 			end,
 			desc = "Debug: Step Over",
 		},
 		{
-			"<F3>",
+			"<leader>dsO",
 			function()
 				require("dap").step_out()
 			end,
@@ -70,11 +70,27 @@ return {
 		},
 		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
 		{
-			"<F7>",
+			"<leader>du",
 			function()
 				require("dapui").toggle()
 			end,
 			desc = "Debug: See last session result.",
+		},
+		-- Open REPL to evaluate expressions.
+		{
+			"<leader>dr",
+			function()
+				require("dap").repl.open()
+			end,
+			desc = "Debug: Open REPL",
+		},
+		-- abort debugging session
+		{
+			"<leader>dq",
+			function()
+				require("dap").terminate()
+			end,
+			desc = "Debug: Terminate Session",
 		},
 	},
 	config = function()
