@@ -161,8 +161,9 @@ return {
 		end
 
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
-		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-		dap.listeners.before.event_exited["dapui_config"] = dapui.close
+		-- NOTE: don't close dapui on terminate or exit, so that we can see the last session results.
+		-- dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+		-- dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
 		-- Install golang specific config
 		require("dap-go").setup({
@@ -172,5 +173,20 @@ return {
 				detached = vim.fn.has("win32") == 0,
 			},
 		})
+
+		dap.configurations.rust = {
+			{
+				name = "Launch file",
+				type = "codelldb",
+				request = "launch",
+				program = function()
+					local cwd = vim.fn.getcwd()
+					local bin_name = cwd:match("([^/]+)$")
+					return vim.fn.input("Path to executable: ", cwd .. "/target/debug/" .. (bin_name or ""), "file")
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+			},
+		}
 	end,
 }
