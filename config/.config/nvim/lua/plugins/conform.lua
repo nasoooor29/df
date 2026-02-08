@@ -49,6 +49,7 @@ return { -- Autoformat
 			php = { "php", "easy-coding-standard" },
 			sql = { "sql_formatter" },
 			yaml = { "prettier" },
+			python = { "black" },
 		},
 
 		formatters = {

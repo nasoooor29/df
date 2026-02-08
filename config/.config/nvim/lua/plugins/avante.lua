@@ -185,7 +185,7 @@ return {
 						prompts = {
 							{
 								role = "user",
-								content = "#{buffer} #{lsp} @{full_stack_dev} @{memory} @{mcp}\n ",
+								content = "#{buffer} #{lsp} @{full_stack_dev} @{mcp}\n ",
 							},
 						},
 					},
