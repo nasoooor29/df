@@ -62,3 +62,11 @@ if [ -f '/home/nasoooor/.GCP/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nas
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/nasoooor/.GCP/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nasoooor/.GCP/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pnpm
+export PNPM_HOME="/home/nasoooor/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
