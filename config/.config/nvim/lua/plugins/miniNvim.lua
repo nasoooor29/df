@@ -109,5 +109,9 @@ return { -- Collection of various small independent plugins/modules
 				end,
 			},
 		})
+
+		vim.keymap.set("n", "<leader>z", function()
+			require("mini.misc").zoom()
+		end, { noremap = true, silent = true, desc = "MINI: Zoom in/out buffer" })
 	end,
 }
