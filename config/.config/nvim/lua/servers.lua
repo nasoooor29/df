@@ -13,8 +13,8 @@ local servers = {
 	ansiblels = {},
 	stylua = {},
 	templ = {},
-	["ansible-lint"] = {},
-	["powershell-editor-services"] = {},
+	-- ["ansible-lint"] = {},
+	-- ["powershell-editor-services"] = {},
 
 	["rust_analyzer"] = {
 		assist = {
