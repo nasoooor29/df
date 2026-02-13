@@ -3,3 +3,8 @@ installed_packages.log
 profiles/tmp_*
 config/.git-credentials
 config/.config/nvim/.env
+config/.config/nvim/lua/plugins/dankcolors.lua
+config/.config/kitty/dank-tabs.conf
+config/.config/kitty/dank-theme.conf
+config/.config/hypr/dms/colors.conf
+config/.config/alacritty/dank-theme.toml
