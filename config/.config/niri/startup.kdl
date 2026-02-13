@@ -1,0 +1,16 @@
+
+
+// Add lines like this to spawn processes at startup.
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+// See the binds section below for more spawn examples.
+
+// This line starts waybar, a commonly used bar for Wayland compositors.
+
+// spawn-at-startup "waybar"
+
+spawn-at-startup "brave --app='https://spotify.com'"
+spawn-at-startup "flatpak run com.discordapp.Discord"
+spawn-at-startup "kanata -c ~/.config/kanata/kanata.kbd"
+spawn-at-startup "bash ~/.config/hypr/scripts/toggle-monitor.sh"
+spawn-at-startup "kdeconnectd"

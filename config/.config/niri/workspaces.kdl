@@ -1,0 +1,23 @@
+// NOTE: this is workspaces rules"!
+// workspace "browser"
+// workspace "audio"
+// workspace "chat"
+// workspace "terminal"
+
+
+// window-rule {
+//     match app-id=r#"(firefox|brave|chromium|chrome)"#
+//     open-on-workspace "browser"
+// }
+// window-rule {
+//     match app-id=r#"(spotify|spotifyd)"#
+//     open-on-workspace "audio"
+// }
+// window-rule {
+//     match app-id=r#"(discord|slack)"#
+//     open-on-workspace "chat"
+// }
+// window-rule {
+//     match app-id=r#"(kitty|ghostty|alacritty)"#
+//     open-on-workspace "terminal"
+// }
