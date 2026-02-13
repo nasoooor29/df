@@ -20,6 +20,7 @@ binds {
     Mod+V hotkey-overlay-title="Open Clipboard" { spawn-sh "dms ipc clipboard toggle"; }
     Mod+B hotkey-overlay-title="Open Browser" { spawn "brave"; }
     Mod+R hotkey-overlay-title="Open Spotlight" { spawn-sh "dms ipc spotlight toggle"; }
+    Mod+W hotkey-overlay-title="Change Wallpaper" { spawn-sh " dms ipc wallpaper next"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc lock lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -220,8 +221,8 @@ binds {
     // Mod+F { maximize-column; }
     // Mod+Shift+F { fullscreen-window; }
     // mine
-    Mod+F { toggle-window-floating; }
-    Mod+Shift+F { maximize-column; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { toggle-window-floating; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
@@ -255,7 +256,9 @@ binds {
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
-    Mod+W { toggle-column-tabbed-display; }
+    // NOTE: me 
+    // win+w will do wallpaper shit now
+    // Mod+W { toggle-column-tabbed-display; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have
