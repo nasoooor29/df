@@ -9,41 +9,42 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local harpoon = require("harpoon")
+			local key = require("utils").new("Harpoon")
 
 			harpoon:setup()
-			vim.keymap.set("n", "<leader>m", function()
+			key.Nset("<leader>m", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end, { desc = "harpoon: show menu" })
+			end, "harpoon: show menu")
 
 			for i = 1, 9 do
-				vim.keymap.set("n", "<leader>" .. i, function()
+				key.Nset("<leader>" .. i, function()
 					harpoon:list():select(i)
-				end, { desc = "harpoon: select " .. i })
+				end, "harpoon: select " .. i)
 			end
-			vim.keymap.set("n", "[h", function()
+			key.Nset("[h", function()
 				harpoon:list():prev()
-			end, { desc = "harpoon: go to prev" })
-			vim.keymap.set("n", "]h", function()
+			end, "harpoon: go to prev")
+			key.Nset("]h", function()
 				harpoon:list():next()
-			end, { desc = "harpoon: go to next" })
-			vim.keymap.set("n", "<leader>-", function()
+			end, "harpoon: go to next")
+			key.Nset("<leader>-", function()
 				harpoon:list():remove()
-			end, { desc = "harpoon: remove from list" })
-			vim.keymap.set("n", "<leader>=", function()
+			end, "harpoon: remove from list")
+			key.Nset("<leader>=", function()
 				harpoon:list():add()
-			end, { desc = "harpoon: add to list" })
+			end, "harpoon: add to list")
 
 			-- Add custom commands
 			-- vim.api.nvim_create_user_command("HarpoonClear", function()
 			-- 	harpoon:list():clear()
-			-- end, { desc = "harpoon: clear list" })
+			-- end, "harpoon: clear list")
 			--
 			-- vim.api.nvim_create_user_command("HarpoonAdd", function(opts)
 			-- 	harpoon:list():add({ value = opts.args, context = nil })
 			-- 	require("harpoon")
 			-- 		:list()
 			-- 		:add({ value = "/home/nasoooor/dotfiles/.config/nvim/lua/plugins/avante.lua", context = { col = 1, row = 1 } })
-			-- end, { desc = "harpoon: add to list", nargs = 1 })
+			-- end, "harpoon: add to list", nargs = 1)
 		end,
 	},
 }
