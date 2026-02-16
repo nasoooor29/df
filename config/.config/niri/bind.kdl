@@ -19,6 +19,7 @@ binds {
     Mod+D hotkey-overlay-title="Open Discord" { spawn-sh "flatpak run com.discordapp.Discord"; }
     Mod+V hotkey-overlay-title="Open Clipboard" { spawn-sh "dms ipc clipboard toggle"; }
     Mod+B hotkey-overlay-title="Open Browser" { spawn "brave"; }
+    Mod+E hotkey-overlay-title="Open Explorer" { spawn-sh "thunar"; }
     Mod+R hotkey-overlay-title="Open Spotlight" { spawn-sh "dms ipc spotlight toggle"; }
     Mod+W hotkey-overlay-title="Change Wallpaper" { spawn-sh " dms ipc wallpaper next"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc lock lock"; }
