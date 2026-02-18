@@ -53,6 +53,9 @@ return { -- Autoformat
 		},
 
 		formatters = {
+			rustfmt = {
+				prepend_args = { "--config", "max_width=80" },
+			},
 			php = {
 				command = "php-cs-fixer",
 				args = {
