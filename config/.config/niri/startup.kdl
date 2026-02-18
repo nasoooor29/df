@@ -12,5 +12,6 @@
 spawn-at-startup "brave --app='https://spotify.com'"
 spawn-at-startup "flatpak run com.discordapp.Discord"
 spawn-at-startup "kanata -c ~/.config/kanata/kanata.kbd"
-spawn-at-startup "bash ~/.config/hypr/scripts/toggle-monitor.sh"
+// spawn-at-startup "bash ~/.config/hypr/scripts/toggle-monitor.sh"
+spawn-at-startup "bash ~/.config/niri/scripts/monitor-swap.sh"
 spawn-at-startup "kdeconnectd"
