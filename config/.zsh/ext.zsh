@@ -49,3 +49,8 @@ done
 source ~/.zsh/.p10k.zsh
 autoload -Uz compinit
 compinit
+
+
+
+# my custom plugins
+source ~/.zsh/my-plugins/sudo/plugin.sh
