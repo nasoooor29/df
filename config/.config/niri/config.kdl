@@ -8,7 +8,7 @@ include "./input.kdl"
 include "./layout.kdl"
 include "./startup.kdl"
 include "./window-rule.kdl"
-// include "./workspaces.kdl"
+include "./workspaces.kdl"
 include "./other.kdl"
 
 
@@ -20,3 +20,5 @@ include "./other.kdl"
 // include "./dms/layout.kdl"
 include "./dms/outputs.kdl"
 include "./dms/wpblur.kdl"
+
+include "dms/cursor.kdl"

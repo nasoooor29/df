@@ -12,7 +12,13 @@ while true; do
     /output "eDP-1"/ { in_block=1 }
     in_block && /^\}/ { in_block=0 }
     !(in_block && /^[[:space:]]*off$/)
-    ' "$CONFIG_FILE" > "$CONFIG_FILE.tmp" && mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+    ' "$CONFIG_FILE" > "$CONFIG_FILE.tmp" && {
+      if ! cmp -s "$CONFIG_FILE" "$CONFIG_FILE.tmp"; then
+        mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+      else
+        rm "$CONFIG_FILE.tmp"
+      fi
+    }
 
   else
     echo "Monitor connected"
@@ -27,7 +33,13 @@ while true; do
         in_block=0
     }
     { print }
-    ' "$CONFIG_FILE" > "$CONFIG_FILE.tmp" && mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+    ' "$CONFIG_FILE" > "$CONFIG_FILE.tmp" && {
+      if ! cmp -s "$CONFIG_FILE" "$CONFIG_FILE.tmp"; then
+        mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+      else
+        rm "$CONFIG_FILE.tmp"
+      fi
+    }
 
   fi
 
