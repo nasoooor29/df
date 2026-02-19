@@ -10,3 +10,4 @@ config/.config/hypr/dms/colors.conf
 config/.config/alacritty/dank-theme.toml
 config/.config/niri/dms/colors.kdl
 /config/.config/tmux/scripts/session-mng/servers.json
+/config/.config/tmux/scripts/session-mng/pass1.txt
