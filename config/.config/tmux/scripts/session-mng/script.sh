@@ -64,7 +64,7 @@ if [[ "$CHOOSEN" == "[SSH]"* ]]; then
 
     if [ -n "$PASSWORD" ] && [ -z "$KEY" ]; then
         if command -v sshpass >/dev/null 2>&1; then
-            SSH_CMD="sshpass $SSH_CMD $TARGET"
+            SSH_CMD="sshpass -e $SSH_CMD $TARGET"
         else
             tmux display-message "sshpass not installed"
             exit 1
