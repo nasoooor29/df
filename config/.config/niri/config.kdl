@@ -21,4 +21,3 @@ include "./other.kdl"
 include "./dms/outputs.kdl"
 include "./dms/wpblur.kdl"
 
-include "dms/cursor.kdl"

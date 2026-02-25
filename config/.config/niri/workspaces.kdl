@@ -1,23 +1,30 @@
-// NOTE: this is workspaces rules"!
-// workspace "browser"
-// workspace "audio"
-// workspace "chat"
-// workspace "terminal"
-
-
+// // NOTE: this is workspaces rules"!
+// workspace "10"
+// // workspace "9"
+// // workspace "8"
+// // workspace "7"
+// // workspace "6"
+// // workspace "5"
+// // workspace "4"
+// workspace "3"
+// workspace "2"
+// workspace "1"
+//
+//
+//
 // window-rule {
-//     match app-id=r#"(firefox|brave|chromium|chrome)"#
-//     open-on-workspace "browser"
+//     match app-id=r#"(kitty|ghostty|alacritty)"#
+//     open-on-workspace "1"
 // }
 // window-rule {
-//     match app-id=r#"(spotify|spotifyd)"#
-//     open-on-workspace "audio"
+//     match app-id=r#"(firefox|brave|chromium|chrome)"#
+//     open-on-workspace "2"
 // }
 // window-rule {
 //     match app-id=r#"(discord|slack)"#
-//     open-on-workspace "chat"
+//     open-on-workspace "3"
 // }
 // window-rule {
-//     match app-id=r#"(kitty|ghostty|alacritty)"#
-//     open-on-workspace "terminal"
+//     match app-id=r#"(spotify|spotifyd)"#
+//     open-on-workspace "10"
 // }
