@@ -5,18 +5,23 @@ HOSTS_FILE="$HOME/.config/tmux/scripts/session-mng/servers.json"
 COMMAND=$(echo -e "[PLAYGROUND] new\n[PLAYGROUND] clear\n$branches")
 SSH_HOSTS=$(cat $HOSTS_FILE | jq 'keys[]' -r | sed 's/^/[SSH] /')
 
+TMUX_SESS_CMD='tmux list-sessions -F "#{?session_attached,1,0} #{session_name} #{session_last_attached}" \
+  | sort -k1,1nr -k3,3nr \
+  | awk '"'"'{print $2}'"'"''
+
 CHOOSEN=$(
-    tmux ls -F "#S" | tac | fzf-tmux -p 60%,40% --border --margin=0 \
-        --header '  A-1 tmux  A-2 zoxide  A-3 playgrounds  A-4 ssh  A-d kill ' \
-        --no-sort --ansi --border-label ' GOOD BOY ' --prompt '  ' --border=rounded \
-        --bind "tab:down,btab:up" \
-        --bind "alt-1:change-prompt(  )+reload(tmux ls -F \"#S\" | tac)" \
-        --bind "alt-2:change-prompt(  )+reload(zoxide query --list; find ~/repos -maxdepth 1)" \
-        --bind "alt-3:change-prompt(  )+reload(echo -e \"$COMMAND\")" \
-        --bind "alt-4:change-prompt(  )+reload(echo -e \"$SSH_HOSTS\")" \
-        --bind "alt-d:execute(tmux kill-session -t {})+change-prompt(  )+reload(tmux ls -F \"#S\" | tac)" \
-        --bind "alt-k:up,alt-j:down" \
-        --bind alt-\':abort
+    eval "$TMUX_SESS_CMD" |
+        fzf-tmux -p 60%,40% --border --margin=0 \
+            --header '  A-1 tmux  A-2 zoxide  A-3 playgrounds  A-4 ssh  A-d kill ' \
+            --no-sort --ansi --border-label ' GOOD BOY ' --prompt '  ' --border=rounded \
+            --bind "tab:down,btab:up" \
+            --bind "alt-1:change-prompt(  )+reload($TMUX_SESS_CMD)" \
+            --bind "alt-2:change-prompt(  )+reload(zoxide query --list; find ~/repos -maxdepth 1)" \
+            --bind "alt-3:change-prompt(  )+reload(echo -e \"$COMMAND\")" \
+            --bind "alt-4:change-prompt(  )+reload(echo -e \"$SSH_HOSTS\")" \
+            --bind "alt-d:execute(tmux kill-session -t {})+change-prompt(  )+reload($TMUX_SESS_CMD)" \
+            --bind "alt-k:up,alt-j:down" \
+            --bind alt-\':abort
 )
 
 if [ -z "$CHOOSEN" ]; then
@@ -75,8 +80,7 @@ if [[ "$CHOOSEN" == "[SSH]"* ]]; then
 
     # Open new window in CURRENT session
     # launch ssh with the sshpass env var
-    tmux new-window -n "ssh:$CHOOSEN_NO_PREFIX" "SSHPASS=$(printf %q "$PASSWORD") zsh"
-    tmux send-keys "$SSH_CMD" C-m
+    tmux new-window -n "ssh:$CHOOSEN_NO_PREFIX" "SSHPASS=$(printf %q "$PASSWORD") $SSH_CMD; exit"
 
     exit 0
 fi
