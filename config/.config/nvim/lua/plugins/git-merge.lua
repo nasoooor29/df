@@ -19,17 +19,10 @@ return {
 			},
 		})
 
-		local function choose_ours()
-			vim.cmd("GitConflictChooseOurs")
-			vim.cmd("GitConflictNextConflict")
-		end
-		local function choose_theirs()
-			vim.cmd("GitConflictChooseTheirs")
-			vim.cmd("GitConflictNextConflict")
-		end
-
-
-		vim.keymap.set("n", "co", choose_ours)
-		vim.keymap.set("n", "ct", choose_theirs)
+		vim.keymap.set("n", "co", "<CMD>GitConflictChooseOurs<CR>", { desc = "Git choose ours" })
+		vim.keymap.set("n", "ct", "<CMD>GitConflictChooseTheirs<CR>", { desc = "Git choose theirs" })
+		vim.keymap.set("n", "cb", "<CMD>GitConflictChooseBoth<CR>", { desc = "Git choose both" })
+		vim.keymap.set("n", "[x", "<CMD>GitConflictPrevConflict<CR>", { desc = "Go to previous conflict" })
+		vim.keymap.set("n", "]x", "<CMD>GitConflictNextConflict<CR>", { desc = "Go to next conflict" })
 	end,
 }
