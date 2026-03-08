@@ -22,6 +22,8 @@ binds {
     Mod+E hotkey-overlay-title="Open Explorer" { spawn-sh "nautilus"; }
     Mod+R hotkey-overlay-title="Open Spotlight" { spawn-sh "dms ipc spotlight toggle"; }
     Mod+W hotkey-overlay-title="Change Wallpaper" { spawn-sh " dms ipc wallpaper next"; }
+    Mod+p hotkey-overlay-title="Change Wallpaper" { spawn-sh "niri msg output eDP-1 on"; }
+    Mod+SHIFT+p hotkey-overlay-title="Change Wallpaper" { spawn-sh "bash $HOME/.config/niri/scripts/monitor-thing.sh"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc lock lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -289,7 +291,7 @@ binds {
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    // // Powers off the monitors. To turn them back on, do any input like
+    // // moving the mouse or pressing any other key.
+    // Mod+Shift+P { power-off-monitors; }
 }

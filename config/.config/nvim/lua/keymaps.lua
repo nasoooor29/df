@@ -53,11 +53,11 @@ vim.keymap.set("n", "<leader>P", '"+P', opts)
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', opts)
 vim.keymap.set({ "n", "x" }, "<leader>d", '"+d', opts)
 
--- these shortcuts is to make it look abit fimiliar to vscode
-vim.keymap.set("n", "<Tab>", ">>", opts)
-vim.keymap.set("n", "<S-Tab>", "<<", opts)
-vim.keymap.set("v", "<Tab>", ">gv", opts)
-vim.keymap.set("v", "<S-Tab>", "<gv", opts)
+-- -- these shortcuts is to make it look abit fimiliar to vscode
+vim.keymap.set("n", ">", ">>", opts)
+vim.keymap.set("n", "<", "<<", opts)
+vim.keymap.set("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv", opts)
 
 vim.keymap.set("n", "<A-S-j>", "yyp", opts)
 vim.keymap.set("n", "<A-S-k>", "yyP", opts)
@@ -91,6 +91,9 @@ vim.keymap.set("v", "<leader>eb", ":s/\\%V", opts)
 vim.keymap.set("n", "<leader>ref", function()
 	vim.cmd("luafile " .. vim.api.nvim_buf_get_name(0))
 end, opts)
+
+vim.keymap.set("n", "<C-x>", "<C-x>", opts)
+vim.keymap.set("n", "<C-xx>", "<C-a>", opts)
 
 vim.g.VM_maps = {
 	["Find Under"] = "<C-d>",
