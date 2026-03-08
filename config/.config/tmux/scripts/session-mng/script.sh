@@ -100,7 +100,7 @@ if [ ! -d "$CHOOSEN" ]; then
     exit 0
 fi
 
-SESSION_NAME="$(basename "$CHOOSEN" | tr '.' '_')"
+SESSION_NAME="$(printf '%s' "$CHOOSEN" | tr '.' '_')"
 
 # Create session starting in the directory
 tmux new-session -d -s "$SESSION_NAME" -c "$CHOOSEN"
