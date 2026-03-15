@@ -24,6 +24,7 @@ binds {
     Mod+W hotkey-overlay-title="Change Wallpaper" { spawn-sh " dms ipc wallpaper next"; }
     Mod+p hotkey-overlay-title="Change Wallpaper" { spawn-sh "niri msg output eDP-1 on"; }
     Mod+SHIFT+p hotkey-overlay-title="Change Wallpaper" { spawn-sh "bash $HOME/.config/niri/scripts/monitor-thing.sh"; }
+    Mod+SHIFT+o hotkey-overlay-title="turn off my pc screen" { spawn-sh "kdeconnect-cli -d 2898cfa3345c4efdbe4fbf26beda8e6c --execute-command a5360446_3cf1_47c5_b1ca_7e608eb5a03b"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "dms ipc lock lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
