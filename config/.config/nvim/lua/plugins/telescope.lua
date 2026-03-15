@@ -1,5 +1,6 @@
 return { -- Fuzzy Finder (files, lsp, etc)
 	"nvim-telescope/telescope.nvim",
+	enabled = false,
 	event = "VimEnter",
 	branch = "0.1.x",
 	dependencies = {
@@ -40,6 +41,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					"--glob=!**/.idea/*",
 					"--glob=!**/.vscode/*",
 					"--glob=!**/build/*",
+					"--glob=!**/node_modules/*",
 					"--glob=!**/dist/*",
 					"--glob=!**/target/*",
 					"--glob=!**/yarn.lock",
@@ -77,6 +79,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				hidden = true,
 				file_ignore_patterns = {
 					".git/",
+					"node_modules/",
 				},
 			})
 		end, { desc = "[F]ind [F]iles" })

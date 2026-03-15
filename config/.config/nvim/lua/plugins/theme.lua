@@ -1,8 +1,5 @@
 return {
 	-- themes i may wanna switch to later
-	"akinsho/horizon.nvim",
-	"folke/tokyonight.nvim",
-	"isobit/vim-caddyfile",
 	{
 		{
 			"xiyaowong/transparent.nvim",

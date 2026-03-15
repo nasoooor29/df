@@ -1,48 +1,4 @@
--- vim.api.nvim_create_autocmd({ "BufEnter" }, {
--- 	callback = function()
--- 		local buf_name = vim.api.nvim_buf_get_name(0)
--- 		if not string.match(buf_name, "NeogitStatus") then
--- 			return
--- 		end
---
--- 		vim.keymap.set("n", "<leader>g", require("neogit").close, { desc = "close neogit" })
--- 	end,
--- })
---
--- vim.api.nvim_create_autocmd({ "BufLeave" }, {
--- 	callback = function()
--- 		local buf_name = vim.api.nvim_buf_get_name(0)
--- 		if not string.match(buf_name, "NeogitStatus") then
--- 			return
--- 		end
--- 		vim.keymap.set("n", "<leader>g", require("neogit").open, { desc = "open neogit" })
--- 	end,
--- })
---
 return {
-
-	-- {
-	-- 	"NeogitOrg/neogit",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim", -- required
-	-- 		"sindrets/diffview.nvim", -- optional - Diff integration
-	-- 		-- Only one of these is needed.
-	-- 		"nvim-telescope/telescope.nvim", -- optional
-	-- 	},
-	-- 	opts = {
-	-- 		kind = "floating",
-	-- 	},
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>g",
-	-- 			function()
-	-- 				require("neogit").open()
-	-- 			end,
-	-- 			desc = "Open neogit",
-	-- 		},
-	-- 	},
-	-- },
-
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {},
@@ -104,38 +60,11 @@ return {
 				},
 			})
 
-			local function choose_ours()
-				vim.cmd("GitConflictChooseOurs")
-				vim.cmd("GitConflictNextConflict")
-			end
-			local function choose_theirs()
-				vim.cmd("GitConflictChooseTheirs")
-				vim.cmd("GitConflictNextConflict")
-			end
-
-			vim.keymap.set("n", "co", choose_ours)
-			vim.keymap.set("n", "ct", choose_theirs)
+			vim.keymap.set("n", "co", "<CMD>GitConflictChooseOurs<CR>", { desc = "Git choose ours" })
+			vim.keymap.set("n", "ct", "<CMD>GitConflictChooseTheirs<CR>", { desc = "Git choose theirs" })
+			vim.keymap.set("n", "cb", "<CMD>GitConflictChooseBoth<CR>", { desc = "Git choose both" })
+			vim.keymap.set("n", "[x", "<CMD>GitConflictPrevConflict<CR>", { desc = "Go to previous conflict" })
+			vim.keymap.set("n", "]x", "<CMD>GitConflictNextConflict<CR>", { desc = "Go to next conflict" })
 		end,
-	},
-	-- nvim v0.8.0
-	{
-		"kdheepak/lazygit.nvim",
-		lazy = true,
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		-- optional for floating window border decoration
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
-		keys = {
-			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-		},
 	},
 }

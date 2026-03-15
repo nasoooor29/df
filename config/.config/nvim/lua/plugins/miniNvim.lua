@@ -47,55 +47,14 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.statusline").setup(StatusLineOpts)
 		require("mini.surround").setup()
 		require("mini.move").setup()
+		require("mini.pick").setup()
+		require("mini.extra").setup()
+
 		-- require("mini.tabline").setup()
 		-- require("mini.starter").setup()
 		require("mini.pairs").setup()
 		require("mini.cursorword").setup()
 		require("mini.indentscope").setup()
-
-		-- local clue = require("mini.clue")
-		-- clue.setup({
-		-- 	triggers = {
-		-- 		-- Leader triggers
-		-- 		{ mode = "n", keys = "<Leader>" },
-		-- 		{ mode = "x", keys = "<Leader>" },
-		--
-		-- 		-- Built-in completion
-		-- 		{ mode = "i", keys = "<C-x>" },
-		--
-		-- 		-- `g` key
-		-- 		{ mode = "n", keys = "g" },
-		-- 		{ mode = "x", keys = "g" },
-		-- 		-- NOTE: in the future
-		-- 		-- -- Marks https://github.com/chentoast/marks.nvim
-		-- 		-- { mode = "n", keys = "'" },
-		-- 		-- { mode = "n", keys = "`" },
-		-- 		-- { mode = "x", keys = "'" },
-		-- 		-- { mode = "x", keys = "`" },
-		-- 		-- -- Registers
-		-- 		-- { mode = "n", keys = '"' },
-		-- 		-- { mode = "x", keys = '"' },
-		-- 		-- { mode = "i", keys = "<C-r>" },
-		-- 		-- { mode = "c", keys = "<C-r>" },
-		-- 		-- -- Window commands
-		-- 		-- { mode = "n", keys = "<C-w>" },
-		-- 		-- -- `z` key
-		-- 		-- { mode = "n", keys = "z" },
-		-- 		-- { mode = "x", keys = "z" },
-		-- 	},
-		--
-		-- 	clues = {
-		-- 		clue.gen_clues.builtin_completion(),
-		-- 		clue.gen_clues.g(),
-		-- 		clue.gen_clues.marks(),
-		-- 		clue.gen_clues.registers(),
-		-- 		clue.gen_clues.windows(),
-		-- 		clue.gen_clues.z(),
-		-- 	},
-		-- 	window = {
-		-- 		config = { width = 50 },
-		-- 	},
-		-- })
 
 		require("mini.hipatterns").setup({
 			highlighters = {
@@ -110,8 +69,32 @@ return { -- Collection of various small independent plugins/modules
 			},
 		})
 
+		local hipatterns = require("mini.hipatterns")
+
+		hipatterns.setup({
+			highlighters = {
+				todo = { pattern = "%f[%w]()TODO:.*", group = "MiniHipatternsTodo" },
+				fixme = { pattern = "%f[%w]()FIXME:.*", group = "MiniHipatternsFixme" },
+				test = { pattern = "%f[%w]()TEST:.*", group = "MiniHipatternsHack" },
+				note = { pattern = "%f[%w]()NOTE:.*", group = "MiniHipatternsNote" },
+				info = { pattern = "%f[%w]()INFO:.*", group = "MiniHipatternsNote" },
+				source = { pattern = "%f[%w]()SOURCE:", group = "MiniHipatternsNote" },
+				small_source = { pattern = "%f[%w]()source:", group = "MiniHipatternsNote" },
+				-- note = hi_words({ "NOTE", "INFO" }, "MiniHipatternsNote"),
+				-- source = hi_words({ "SOURCE", "source" }, "MiniHipatternsNote"),
+
+				hex_color = hipatterns.gen_highlighter.hex_color(),
+			},
+		})
+
 		vim.keymap.set("n", "<leader>z", function()
 			require("mini.misc").zoom()
 		end, { noremap = true, silent = true, desc = "MINI: Zoom in/out buffer" })
+
+		vim.keymap.set("n", "<leader>ff", "<CMD>Pick files<CR>", { desc = "[F]ind [F]iles" })
+		-- Replace Telescope live_grep with mini.pick live_grep
+		vim.keymap.set("n", "<leader>fg", "<CMD>Pick grep_live<CR>", { desc = "[F]ind [G]rep" })
+		vim.keymap.set("n", "<leader>fk", "<CMD>Pick keymaps<CR>", { desc = "[F]ind [K]eymaps" })
+		vim.keymap.set("n", "<leader>fc", "<CMD>Pick commands<CR>", { desc = "[F]ind [C]ommands" })
 	end,
 }

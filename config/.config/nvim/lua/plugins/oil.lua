@@ -1,15 +1,3 @@
--- vim.keymap.set("n", "<leader>fe", function()
--- 	local f = require("fyler")
--- 	f.show()
--- end, { desc = "Open parent directory" })
--- return {
--- 	{
--- 		"A7Lavinraj/fyler.nvim",
--- 		dependencies = { "echasnovski/mini.icons" },
--- 		opts = {},
--- 	},
--- }
-
 return {
 	"nasoooor29/fyler.nvim",
 	branch = "copilot/add-nvim-native-folds",

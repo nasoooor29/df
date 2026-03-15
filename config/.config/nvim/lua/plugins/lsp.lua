@@ -12,10 +12,9 @@ return {
 		---@diagnostic disable-next-line: unused-local
 		local on_attach = function(client, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
-			local t = require("telescope.builtin")
-			vim.keymap.set("n", "gd", t.lsp_definitions, bufopts)
-			vim.keymap.set("n", "gi", t.lsp_implementations, bufopts)
-			vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
+			-- local t = require("telescope.builtin")
+			vim.keymap.set("n", "gd", "<cmd>Pick lsp scope='definition'<cr>", bufopts)
+			vim.keymap.set("n", "gr", "<cmd>Pick lsp scope='references'<cr>", bufopts) -- added for references
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
 			vim.keymap.set("n", "[d", function()
 				vim.diagnostic.jump({ count = -1, float = true })
