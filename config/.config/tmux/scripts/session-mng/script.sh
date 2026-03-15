@@ -16,7 +16,7 @@ CHOOSEN=$(
             --no-sort --ansi --border-label ' GOOD BOY ' --prompt '  ' --border=rounded \
             --bind "tab:down,btab:up" \
             --bind "alt-1:change-prompt(  )+reload($TMUX_SESS_CMD)" \
-            --bind "alt-2:change-prompt(  )+reload(zoxide query --list; find ~/repos -maxdepth 1; find ~/repos/playground -maxdepth 1)" \
+            --bind "alt-2:change-prompt(  )+reload(zoxide query --list; find $HOME/repos -maxdepth 1; find $HOME/repos/playground -maxdepth 1)" \
             --bind "alt-3:change-prompt(  )+reload(echo -e \"$COMMAND\")" \
             --bind "alt-4:change-prompt(  )+reload(echo -e \"$SSH_HOSTS\")" \
             --bind "alt-d:execute(tmux kill-session -t {})+change-prompt(  )+reload($TMUX_SESS_CMD)" \
