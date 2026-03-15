@@ -98,6 +98,20 @@ return { -- Collection of various small independent plugins/modules
 					char = "<C-v>",
 					func = pasty,
 				},
+
+		hipatterns.setup({
+			highlighters = {
+				todo = { pattern = "%f[%w]()TODO:.*", group = "MiniHipatternsTodo" },
+				fixme = { pattern = "%f[%w]()FIXME:.*", group = "MiniHipatternsFixme" },
+				test = { pattern = "%f[%w]()TEST:.*", group = "MiniHipatternsHack" },
+				note = { pattern = "%f[%w]()NOTE:.*", group = "MiniHipatternsNote" },
+				info = { pattern = "%f[%w]()INFO:.*", group = "MiniHipatternsNote" },
+				source = { pattern = "%f[%w]()SOURCE:", group = "MiniHipatternsNote" },
+				small_source = { pattern = "%f[%w]()source:", group = "MiniHipatternsNote" },
+				-- note = hi_words({ "NOTE", "INFO" }, "MiniHipatternsNote"),
+				-- source = hi_words({ "SOURCE", "source" }, "MiniHipatternsNote"),
+
+				hex_color = hipatterns.gen_highlighter.hex_color(),
 			},
 		})
 
