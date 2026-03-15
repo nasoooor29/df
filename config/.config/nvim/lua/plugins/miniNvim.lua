@@ -47,20 +47,14 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.statusline").setup(StatusLineOpts)
 		require("mini.surround").setup()
 		require("mini.move").setup()
-		local pick = require("mini.pick")
 		require("mini.extra").setup()
-
-		-- require("mini.tabline").setup()
-		-- require("mini.starter").setup()
 		require("mini.pairs").setup()
 		require("mini.cursorword").setup()
 		require("mini.indentscope").setup()
 
-		require("mini.hipatterns").setup({
-			highlighters = {
-				hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
-			},
-		})
+		-- require("mini.tabline").setup()
+		-- require("mini.starter").setup()
+
 		require("mini.comment").setup({
 			options = {
 				custom_commentstring = function()
@@ -85,9 +79,12 @@ return { -- Collection of various small independent plugins/modules
 				hex_color = hipatterns.gen_highlighter.hex_color(),
 			},
 		})
+
 		local function pasty()
 			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-r>+", true, true, true), "n", true)
 		end
+
+		local pick = require("mini.pick")
 		pick.setup({
 			mappings = {
 				sys_paste2 = {
@@ -98,20 +95,6 @@ return { -- Collection of various small independent plugins/modules
 					char = "<C-v>",
 					func = pasty,
 				},
-
-		hipatterns.setup({
-			highlighters = {
-				todo = { pattern = "%f[%w]()TODO:.*", group = "MiniHipatternsTodo" },
-				fixme = { pattern = "%f[%w]()FIXME:.*", group = "MiniHipatternsFixme" },
-				test = { pattern = "%f[%w]()TEST:.*", group = "MiniHipatternsHack" },
-				note = { pattern = "%f[%w]()NOTE:.*", group = "MiniHipatternsNote" },
-				info = { pattern = "%f[%w]()INFO:.*", group = "MiniHipatternsNote" },
-				source = { pattern = "%f[%w]()SOURCE:", group = "MiniHipatternsNote" },
-				small_source = { pattern = "%f[%w]()source:", group = "MiniHipatternsNote" },
-				-- note = hi_words({ "NOTE", "INFO" }, "MiniHipatternsNote"),
-				-- source = hi_words({ "SOURCE", "source" }, "MiniHipatternsNote"),
-
-				hex_color = hipatterns.gen_highlighter.hex_color(),
 			},
 		})
 
