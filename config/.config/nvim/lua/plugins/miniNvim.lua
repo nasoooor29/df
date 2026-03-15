@@ -47,7 +47,7 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.statusline").setup(StatusLineOpts)
 		require("mini.surround").setup()
 		require("mini.move").setup()
-		require("mini.pick").setup()
+		local pick = require("mini.pick")
 		require("mini.extra").setup()
 
 		-- require("mini.tabline").setup()
@@ -70,7 +70,6 @@ return { -- Collection of various small independent plugins/modules
 		})
 
 		local hipatterns = require("mini.hipatterns")
-
 		hipatterns.setup({
 			highlighters = {
 				todo = { pattern = "%f[%w]()TODO:.*", group = "MiniHipatternsTodo" },
@@ -86,6 +85,21 @@ return { -- Collection of various small independent plugins/modules
 				hex_color = hipatterns.gen_highlighter.hex_color(),
 			},
 		})
+		local function pasty()
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-r>+", true, true, true), "n", true)
+		end
+		pick.setup({
+			mappings = {
+				sys_paste2 = {
+					char = "<C-S-v>",
+					func = pasty,
+				},
+				sys_paste = {
+					char = "<C-v>",
+					func = pasty,
+				},
+			},
+		})
 
 		vim.keymap.set("n", "<leader>z", function()
 			require("mini.misc").zoom()
@@ -96,5 +110,23 @@ return { -- Collection of various small independent plugins/modules
 		vim.keymap.set("n", "<leader>fg", "<CMD>Pick grep_live<CR>", { desc = "[F]ind [G]rep" })
 		vim.keymap.set("n", "<leader>fk", "<CMD>Pick keymaps<CR>", { desc = "[F]ind [K]eymaps" })
 		vim.keymap.set("n", "<leader>fc", "<CMD>Pick commands<CR>", { desc = "[F]ind [C]ommands" })
+		vim.keymap.set("n", "<leader>fh", "<CMD>Pick help<CR>", { desc = "[F]ind [H]elp" })
+		vim.keymap.set("n", "<leader>fp", ":Pick hipatterns<CR>", {
+			desc = "Find search hipatterns",
+		})
+
+		vim.keymap.set(
+			"n",
+			"<leader>fd",
+			"<CMD>Pick diagnostic scope='current' sort_by='severity'<CR>",
+			{ desc = "[F]ind [D]iagnostic in current buffer" }
+		)
+
+		vim.keymap.set(
+			"n",
+			"<leader>fD",
+			"<CMD>Pick diagnostic scope='all' sort_by='severity'<CR>",
+			{ desc = "[F]ind [D]iagnostic in all buffers" }
+		)
 	end,
 }
