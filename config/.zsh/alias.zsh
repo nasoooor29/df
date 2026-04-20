@@ -9,7 +9,8 @@ alias tls="tmux ls"
 alias tka="tmux kill-server"
 
 alias n=nvim
-alias z=zellij
+# alias z=zellij
+alias oo="opencode"
 alias zadd='find . -maxdepth 1 -type d -exec zoxide add "{}" \;'
 
 # alias pacman="echo 'Are you sure? If it'\''s just a one-time thing, use \\\\pacman. Otherwise, put it in the playbook.'"
