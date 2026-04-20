@@ -1,0 +1,12 @@
+[Unit]
+Description=Monitor Swap Script
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash %h/.config/niri/scripts/monitor-swap.sh
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target
