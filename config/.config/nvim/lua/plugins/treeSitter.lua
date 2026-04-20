@@ -1,41 +1,74 @@
 return {
-	{ -- Highlight, edit, and navigate code
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		main = "nvim-treesitter.configs", -- Sets main module to use for opts
 
-		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-		opts = {
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	branch = "main",
+	config = function()
+		require("nvim-treesitter").setup({
 			ensure_installed = {
 				"bash",
 				"c",
-				"diff",
+				"cpp",
+				"css",
+				"go",
 				"html",
+				"javascript",
 				"lua",
-				"luadoc",
-				"markdown",
-				"markdown_inline",
-				"query",
+				"python",
+				"ruby",
+				"rust",
+				"sql",
+				"typescript",
+				"yaml",
 				"vim",
 				"vimdoc",
-				"go",
+				"query",
+				"markdown",
+				"markdown_inline",
 			},
-			-- Autoinstall languages that are not installed
 			auto_install = true,
+			sync_install = false,
 			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = false,
 			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-					-- node_decremental = "<C-s-space>",
-				},
-			},
-		},
-	}
+			-- init selection incremental selection
+			-- incremental_selection = {
+			-- 	enable = true,
+			-- 	keymaps = {
+			-- 		init_selection = "<C-space>",
+			-- 		node_incremental = "<C-space>",
+			-- 		scope_incremental = false,
+			-- 		node_decremental = "<bs>",
+			-- 		-- node_decremental = "<C-s-space>",
+			-- 	},
+			-- },
+		})
+
+		vim.keymap.set("n", "<C-space>", function()
+			-- press v to enter visual mode
+			vim.cmd("normal! v")
+			if vim.treesitter.get_parser(nil, nil, { error = false }) then
+				require("vim.treesitter._select").select_parent(vim.v.count1)
+			else
+				vim.lsp.buf.selection_range(vim.v.count1)
+			end
+		end, { desc = "Select parent (outer) node" })
+
+		vim.keymap.set({ "x", "o" }, "<C-space>", function()
+			if vim.treesitter.get_parser(nil, nil, { error = false }) then
+				require("vim.treesitter._select").select_parent(vim.v.count1)
+			else
+				vim.lsp.buf.selection_range(vim.v.count1)
+			end
+		end, { desc = "Select parent (outer) node" })
+
+		vim.keymap.set({ "x", "o" }, "in", function()
+			if vim.treesitter.get_parser(nil, nil, { error = false }) then
+				require("vim.treesitter._select").select_child(vim.v.count1)
+			else
+				vim.lsp.buf.selection_range(-vim.v.count1)
+			end
+		end, { desc = "Select child (inner) node" })
+	end,
 }

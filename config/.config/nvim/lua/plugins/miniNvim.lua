@@ -53,8 +53,10 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.indentscope").setup()
 
 		-- require("mini.tabline").setup()
-		-- require("mini.starter").setup()
+		require("mini.starter").setup()
 
+		-- NOTE: check later if u use it or not
+		require("mini.surround").setup()
 		require("mini.comment").setup({
 			options = {
 				custom_commentstring = function()

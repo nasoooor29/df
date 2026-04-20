@@ -1,9 +1,10 @@
 return {
+	enabled = false,
 	"Jezda1337/nvim-html-css",
 	-- dependencies = { "hrsh7th/nvim-cmp", "nvim-treesitter/nvim-treesitter" }, -- Use this if you're using nvim-cmp
 	dependencies = { "saghen/blink.cmp", "nvim-treesitter/nvim-treesitter" }, -- Use this if you're using blink.cmp
 	opts = {
-		enable_on = {                                                      -- Example file types
+		enable_on = { -- Example file types
 			"html",
 			"htmldjango",
 			"tsx",
@@ -18,7 +19,7 @@ return {
 		},
 		handlers = {
 			definition = {
-				bind = "gd"
+				bind = "gd",
 			},
 			hover = {
 				bind = "K",

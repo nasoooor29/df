@@ -95,4 +95,110 @@ return {
 		},
 		opts_extend = { "sources.default" },
 	},
+	{
+		-- NOTE: for configuration options refer to this link:
+		-- https://github.com/MeanderingProgrammer/render-markdown.nvim/wiki
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = { file_types = { "markdown", "Avante", "codecompanion" } },
+		ft = { "markdown", "Avante", "codecompanion" },
+	},
+	{
+		"sudo-tee/opencode.nvim",
+		config = function()
+			require("opencode").setup({
+				keymap = {
+					editor = {
+						["<leader>ae"] = { "quick_chat", mode = { "n", "x" } }, -- Open quick chat input with selection context in visual mode or current line context in normal mode
+					},
+				},
+				ui = {
+					zoom_width = 1, -- Zoom width as percentage of editor width
+				},
+			})
+		end,
+
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					anti_conceal = { enabled = false },
+					file_types = { "markdown", "opencode_output" },
+				},
+				ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
+			},
+			-- Optional, for file mentions and commands completion, pick only one
+			"saghen/blink.cmp",
+			-- 'hrsh7th/nvim-cmp',
+
+			-- Optional, for file mentions picker, pick only one
+			"folke/snacks.nvim",
+			-- 'nvim-telescope/telescope.nvim',
+			-- 'ibhagwan/fzf-lua',
+			-- 'nvim_mini/mini.nvim',
+		},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		requires = {
+			"williamboman/mason.nvim",
+			{
+				"copilotlsp-nvim/copilot-lsp",
+				config = function()
+					vim.g.copilot_nes_debounce = 500
+				end,
+			}, -- (optional) for NES functionality
+		},
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = {
+					auto_trigger = true,
+					debounce = 100,
+					keymap = {
+						accept = "<c-s>",
+						accept_word = false, -- Use <Tab> to accept the whole suggestion
+						accept_line = false, -- Use <Tab> to accept the whole line
+						next = "<c-j>",
+						prev = "<c-k>",
+						dismiss = "<Esc>",
+					},
+				},
+				-- nes = {
+				-- 	enabled = true,
+				-- 	keymap = {
+				-- 		accept_and_goto = "<M-Enter>",
+				-- 		accept = false,
+				-- 		dismiss = "<M-Esc>",
+				-- 	},
+				-- },
+				panel = {
+					enabled = false, -- Disable the Copilot panel
+				},
+			})
+		end,
+	},
+	{
+		"folke/sidekick.nvim",
+		config = function()
+			require("sidekick").setup({})
+			print("sidekick is loaded")
+		end,
+		opts = {},
+		keys = {
+			{
+				"<M-Enter>",
+				function()
+					-- if there is a next edit, jump to it, otherwise apply it if any
+					if not require("sidekick").nes_jump_or_apply() then
+						return "<M-Enter>" -- fallback to normal tab
+					end
+				end,
+				expr = true,
+				mode = { "i", "n" },
+				desc = "Goto/Apply Next Edit Suggestion",
+			},
+		},
+	},
 }
