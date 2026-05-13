@@ -89,6 +89,12 @@ return { -- Collection of various small independent plugins/modules
 		local pick = require("mini.pick")
 		pick.setup({
 			mappings = {
+				to_quickfix = {
+					char = "<C-q>",
+					func = function()
+						pick.default_choose_marked(pick.get_picker_matches()["shown"])
+					end,
+				},
 				sys_paste2 = {
 					char = "<C-S-v>",
 					func = pasty,
@@ -110,6 +116,7 @@ return { -- Collection of various small independent plugins/modules
 		vim.keymap.set("n", "<leader>fk", "<CMD>Pick keymaps<CR>", { desc = "[F]ind [K]eymaps" })
 		vim.keymap.set("n", "<leader>fc", "<CMD>Pick commands<CR>", { desc = "[F]ind [C]ommands" })
 		vim.keymap.set("n", "<leader>fh", "<CMD>Pick help<CR>", { desc = "[F]ind [H]elp" })
+		vim.keymap.set("n", "<leader><leader>", "<CMD>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
 		vim.keymap.set("n", "<leader>fp", ":Pick hipatterns<CR>", {
 			desc = "Find search hipatterns",
 		})
