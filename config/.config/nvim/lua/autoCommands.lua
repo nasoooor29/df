@@ -13,18 +13,22 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		if not is_big then
 			return
 		end
-
-		if is_big or is_binary then
-			local reason = is_big and "large file" or "binary file"
-			local choice = vim.fn.confirm(
-				"Open " .. reason .. "? (" .. args.file .. ")",
-				"&Yes\n&No",
-				2 -- default to "No"
-			)
-
-			if choice ~= 1 then
-				vim.cmd("bdelete " .. args.buf)
-			end
+		if not is_binary then
+			return
 		end
+
+		if vim.fn.exists(":NoMatchParen") ~= 0 then
+			vim.cmd("NoMatchParen")
+		end
+
+		vim.opt_local.foldmethod = "manual"
+		vim.opt_local.statuscolumn = ""
+		vim.opt_local.conceallevel = 0
+
+		vim.b[ev.buf].completion = false
+		vim.b[ev.buf].minianimate_disable = true
+		vim.b[ev.buf].minihipatterns_disable = true
+
+		vim.notify("File is too big, disabling some features for better performance.")
 	end,
 })
