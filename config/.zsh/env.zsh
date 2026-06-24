@@ -5,3 +5,9 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$HOME/dotfiles/.zsh/scripts:$PATH"
+
+loadenv() {
+    set -a
+    source "${1:-.env}"
+    set +a
+}
