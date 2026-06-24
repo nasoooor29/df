@@ -13,6 +13,7 @@ local servers = {
 	ansiblels = {},
 	stylua = {},
 	templ = {},
+	biome = {},
 	-- ["ansible-lint"] = {},
 	-- ["powershell-editor-services"] = {},
 
