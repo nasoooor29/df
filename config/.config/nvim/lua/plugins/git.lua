@@ -1,3 +1,32 @@
+-- floating terminal without extentions
+local function terminaly(cmd)
+	local buf = vim.api.nvim_create_buf(false, true)
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	local row = math.floor((vim.o.lines - height) / 2)
+	local col = math.floor((vim.o.columns - width) / 2)
+
+	vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		row = row,
+		col = col,
+		style = "minimal",
+		border = "rounded",
+	})
+
+	vim.fn.termopen(cmd)
+end
+
+vim.keymap.set("n", "<leader>gh", function()
+	local line = vim.fn.line(".")
+	local file = vim.fn.expand("%")
+	local text = vim.fn.getline(".")
+	local pattern = vim.fn.escape(vim.trim(text), [[\]])
+	terminaly(string.format("git log -L %d,%d:%s -- %s", line, line, pattern, file))
+end, { desc = "Git line history popup" })
+
 return {
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -7,15 +36,19 @@ return {
 		-- NOTE: shortcuts PLZ
 		keys = {
 			{
-				"gv",
-				"<CMD>Gitsigns select_hunk<CR>",
-				desc = "Select hunk",
-			},
-
-			{
 				"<leader>gr",
 				"<CMD>Gitsigns reset_hunk<CR>",
 				desc = "Select hunk",
+			},
+			{
+				"gb",
+				"<CMD>Gitsigns blame_line<CR>",
+				desc = "Blame line",
+			},
+			{
+				"<leader>gb",
+				"<CMD>Gitsigns blame<CR>",
+				desc = "Blame",
 			},
 			{
 				"gs",
