@@ -32,3 +32,10 @@
     mnemonicPrefix = true
     renames = true
     tool = nvimdiff
+
+[sendemail]
+    smtpserver = smtp.gmail.com
+    smtpencryption = tls
+    smtpserverport = 587
+    smtpuser = nasoooor29@gmail.com
+    confirm = auto
