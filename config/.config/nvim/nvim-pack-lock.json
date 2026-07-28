@@ -1,0 +1,32 @@
+{
+  "plugins": {
+    "conform.nvim": {
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
+      "src": "http://github.com/stevearc/conform.nvim"
+    },
+    "fyler.nvim": {
+      "rev": "3dd25cb6103f88ce5a4300a382c389eeae7a0fdb",
+      "src": "https://github.com/FylerOrg/fyler.nvim"
+    },
+    "mini.nvim": {
+      "rev": "c248713d3530710f67ec804cfbdfcd5b02b19dee",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "nvim": {
+      "rev": "e068ab5f8261f23f6f71ffd8791ae40315b77b9c",
+      "src": "http://github.com/catppuccin/nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-ts-context-commentstring": {
+      "rev": "6141a40173c6efa98242dc951ed4b6f892c97027",
+      "src": "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
+    },
+    "transparent.nvim": {
+      "rev": "e00ca1cf09caef575edf8da7e5a8b9193893b4c7",
+      "src": "http://github.com/xiyaowong/transparent.nvim"
+    }
+  }
+}

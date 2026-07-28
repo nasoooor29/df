@@ -13,6 +13,12 @@ return {
 		local on_attach = function(client, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			local position_encoding = client and client.offset_encoding or "utf-16"
+
+			if client.supports_method("textDocument/foldingRange") then
+				vim.wo.foldmethod = "expr"
+				vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+				vim.wo.foldlevel = 99
+			end
 			-- local t = require("telescope.builtin")
 			-- vim.keymap.set("n", "gd", "<cmd>Pick lsp scope='definition'<cr>", bufopts)
 			vim.keymap.set("n", "gd", function()
@@ -47,7 +53,9 @@ return {
 			end, bufopts)
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, bufopts)
-			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>e", function()
+				vim.diagnostic.open_float({ border = "rounded" })
+			end, { noremap = true, silent = true })
 		end
 
 		local capabilities = {

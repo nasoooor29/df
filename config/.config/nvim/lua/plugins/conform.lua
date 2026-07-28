@@ -69,6 +69,7 @@ return { -- Autoformat
 			jsonc = { "prettier" },
 			html = { "prettier" },
 			htmlangular = { "prettier" },
+			markdown = { "prettier" },
 			graphql = { "prettier" },
 			go = { "goimports", "gofumpt" },
 			bash = { "shfmt" },
@@ -78,6 +79,7 @@ return { -- Autoformat
 			sql = { "sql_formatter" },
 			yaml = { "prettier" },
 			python = { "black" },
+			ruby = { "rubocop" },
 		},
 
 		formatters = {

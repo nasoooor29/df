@@ -2,7 +2,17 @@ local servers = {
 	cssls = {},
 	css_variables = {},
 	marksman = {},
-	pyright = {},
+	pyright = {
+
+		settings = {
+			python = {
+				analysis = {
+					diagnosticMode = "off",
+					typeCheckingMode = "off",
+				},
+			},
+		},
+	},
 	-- shfmt = {},
 	gopls = {},
 	-- goimports = {},

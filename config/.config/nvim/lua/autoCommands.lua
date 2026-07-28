@@ -21,14 +21,22 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 			vim.cmd("NoMatchParen")
 		end
 
-		vim.opt_local.foldmethod = "manual"
-		vim.opt_local.statuscolumn = ""
-		vim.opt_local.conceallevel = 0
+		-- vim.opt_local.foldmethod = "manual"
+		-- vim.opt_local.statuscolumn = ""
+		-- vim.opt_local.conceallevel = 0
 
-		vim.b[ev.buf].completion = false
-		vim.b[ev.buf].minianimate_disable = true
-		vim.b[ev.buf].minihipatterns_disable = true
+		-- vim.b[ev.buf].completion = false
+		-- vim.b[ev.buf].minianimate_disable = true
+		-- vim.b[ev.buf].minihipatterns_disable = true
 
 		vim.notify("File is too big, disabling some features for better performance.")
+	end,
+})
+
+-- for some reason it treesitter doesn't work in golang
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "go",
+	callback = function(ev)
+		vim.treesitter.start(ev.buf, "go")
 	end,
 })
