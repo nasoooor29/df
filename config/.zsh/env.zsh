@@ -11,3 +11,7 @@ loadenv() {
     source "${1:-.env}"
     set +a
 }
+
+loadMasterEnv() {
+    loadenv "$HOME/.zsh/.env"
+}

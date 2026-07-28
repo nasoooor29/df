@@ -11,6 +11,7 @@ cic_acc() {
     export AWS_PROFILE=cic
     export AWS_DEFAULT_ACCOUNT=$(aws sts get-caller-identity --profile cic --query Account --output text)
     export AWS_DEFAULT_REGION=us-east-1
+    export AWS_REGION=us-east-1
     rpms_env
 }
 
