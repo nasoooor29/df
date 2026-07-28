@@ -1,56 +1,53 @@
-# Define an array of extensions with paths, repos, and activation files
+# we will make an empty variable for all the plugins as an associative array then fill it on the plugin func
+typeset -A ALL_PLUGINS
 
-# Function to update all Zsh extensions
-update_zsh() {
-  for entry in "${ext[@]}"; do
-    # Split the entry into components
-    IFS='|' read -r dir repo activate <<<"$entry"
+plugin() {
+    local repo=$1
+    local activation=$2
 
-    # Update the extension if the directory exists
-    if [[ -d $dir ]]; then
-      echo "Updating $dir..."
-      git -C "$dir" pull --rebase || echo "Failed to update $dir"
-    else
-      echo "$dir does not exist, skipping."
+    local name=${repo:t:r}
+    local dir="$HOME/.zsh/$name"
+
+    # [[ -d $dir/.git ]] || git clone --depth=1 "$repo" "$dir"
+
+    # if dir not exist clone it and print it
+    if [[ ! -d $dir ]]; then
+        echo "Cloning $repo into $dir..."
+        git clone "$repo" "$dir"
     fi
-  done
+
+    # if there is an activation script, source it
+    [[ -n $activation ]] && source "$dir/$activation"
+    # we will add the plugin to the ALL_PLUGINS associative array with the name as key and the repo as value
+    ALL_PLUGINS[$name]=$repo
 }
 
-# if you want to add new ext make sure the next new line will be like
-# <install location>|<git link>|<activation script>
-ext=(
-  "$HOME/.zsh/powerlevel10k|https://github.com/romkatv/powerlevel10k|$HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme"
-  "$HOME/.zsh/zsh-autosuggestions|https://github.com/zsh-users/zsh-autosuggestions.git|$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  "$HOME/.zsh/zsh-syntax-highlighting|https://github.com/zsh-users/zsh-syntax-highlighting.git|$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  "$HOME/.zsh/supercharge|https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/supercharge.git|$HOME/.zsh/supercharge/supercharge.plugin.zsh"
-  "$HOME/.zsh/zsh-vi-mode|https://github.com/jeffreytse/zsh-vi-mode.git|$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-)
+update_zsh_plugins() {
+    local name
+    local dir
 
-# Loop through the array
-for entry in "${ext[@]}"; do
-  # Split the entry into components
-  IFS='|' read -r dir repo activate <<<"$entry"
+    for name in ${(k)ALL_PLUGINS}; do
+        dir="$HOME/.zsh/$name"
 
-  # Check if the directory exists, clone if necessary
-  if [[ ! -d $dir ]]; then
-    echo "Cloning $repo into $dir..."
-    git clone "$repo" "$dir"
-  fi
+        if [[ -d "$dir/.git" ]]; then
+            echo "Updating $name..."
+            git -C "$dir" pull --rebase --autostash
+        else
+            echo "Skipping $name: not a Git repository"
+        fi
+    done
+}
 
-  # Source the activation file if it exists
-  if [[ -f $activate ]]; then
-    # echo "Sourcing $activate..."
-    source "$activate"
-  else
-    echo "Activation file $activate not found."
-  fi
-done
+plugin "https://github.com/romkatv/powerlevel10k.git" "powerlevel10k.zsh-theme"
+plugin "https://github.com/zsh-users/zsh-autosuggestions.git" "zsh-autosuggestions.zsh"
+plugin "https://github.com/jeffreytse/zsh-vi-mode.git" "zsh-vi-mode.plugin.zsh"
+plugin "https://github.com/ptavares/zsh-direnv.git" "zsh-direnv.plugin.zsh"
 
 source ~/.zsh/.p10k.zsh
 autoload -Uz compinit
 compinit
 
-
-
 # my custom plugins
 source ~/.zsh/my-plugins/sudo/plugin.sh
+
+plugin "https://github.com/zsh-users/zsh-syntax-highlighting.git" "zsh-syntax-highlighting.zsh"
