@@ -52,6 +52,24 @@ return { -- Autoformat
 				lsp_format = lsp_format_opt,
 			}
 		end,
+
+		formatters = {
+			rustfmt = {
+				prepend_args = { "--config", "max_width=80" },
+			},
+			php = {
+				command = "php-cs-fixer",
+				args = {
+					"fix",
+					"--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
+					"$FILENAME",
+				},
+				env = {
+					PHP_CS_FIXER_IGNORE_ENV = "1",
+				},
+				stdin = false,
+			},
+		},
 		formatters_by_ft = {
 			lua = { "stylua" },
 			astro = { "prettierd", "prettier", stop_after_first = true },
@@ -80,24 +98,7 @@ return { -- Autoformat
 			yaml = { "prettier" },
 			python = { "black" },
 			ruby = { "rubocop" },
-		},
-
-		formatters = {
-			rustfmt = {
-				prepend_args = { "--config", "max_width=80" },
-			},
-			php = {
-				command = "php-cs-fixer",
-				args = {
-					"fix",
-					"--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
-					"$FILENAME",
-				},
-				env = {
-					PHP_CS_FIXER_IGNORE_ENV = "1",
-				},
-				stdin = false,
-			},
+			xml = { "prettier" },
 		},
 	},
 }
