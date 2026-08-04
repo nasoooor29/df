@@ -20,6 +20,7 @@ return {
 				vim.wo.foldlevel = 99
 			end
 			-- local t = require("telescope.builtin")
+
 			-- vim.keymap.set("n", "gd", "<cmd>Pick lsp scope='definition'<cr>", bufopts)
 			vim.keymap.set("n", "gd", function()
 				local params = vim.lsp.util.make_position_params(0, position_encoding)
@@ -69,13 +70,17 @@ return {
 
 		capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
-		for name, config in pairs(servers) do
-			vim.lsp.enable(name)
-			config = config or {}
-			config.on_attach = on_attach
-			config.capabilities = capabilities
-			vim.lsp.config(name, config)
-		end
+		local lsp_attach_group = vim.api.nvim_create_augroup("UserLspAttach", { clear = true })
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = lsp_attach_group,
+			callback = function(ev)
+				local client = vim.lsp.get_client_by_id(ev.data.client_id)
+				if not client then
+					return
+				end
+				on_attach(client, ev.buf)
+			end,
+		})
 
 		require("mason-lspconfig").setup({
 			ensure_installed = vim.tbl_keys(servers),
