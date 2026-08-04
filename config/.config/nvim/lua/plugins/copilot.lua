@@ -51,7 +51,7 @@ return {
 					sug.dismiss()
 					return "<Esc>"
 				else
-					return "<Esc>"
+					return "<cmd>noh<CR><Esc>"
 				end
 			end, { expr = true, silent = true, noremap = true })
 

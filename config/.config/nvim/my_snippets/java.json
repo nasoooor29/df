@@ -260,5 +260,26 @@
       ""
     ],
     "description": "Spring controller DELETE action"
+  },
+  "Mini Controller": {
+    "prefix": ["spring-ctrl-mini"],
+    "body": [
+      "package ${1:packageName};",
+      "",
+      "import org.springframework.beans.factory.annotation.Autowired;",
+      "import org.springframework.web.bind.annotation.RequestMapping;",
+      "import org.springframework.web.bind.annotation.RestController;",
+      "",
+      "@RestController",
+      "@RequestMapping(\"/${2:resourceRootPath}\")",
+      "class ${3:resourceName}Controller {",
+      "",
+      "    @Autowired",
+      "    ${4:repositoryClassName} repository;",
+      "",
+      "    //TODO implement controller methods here",
+      "}"
+    ],
+    "description": "Spring controller with repository autowired and request mapping"
   }
 }

@@ -99,6 +99,7 @@ return { -- Autoformat
 			python = { "black" },
 			ruby = { "rubocop" },
 			xml = { "prettier" },
+			java = { "google-java-format" },
 		},
 	},
 }
