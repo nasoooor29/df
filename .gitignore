@@ -13,3 +13,8 @@ config/.config/niri/dms/colors.kdl
 /config/.config/tmux/scripts/session-mng/pass1.txt
 /config/.zsh/.env
 /config/.git-credentials
+/config/.zsh/powerlevel10k
+/config/.zsh/supercharge
+/config/.zsh/zsh-direnv
+/config/.zsh/zsh-syntax-highlighting/highlighters/main
+/config/.zsh/zsh-vi-mode
