@@ -16,16 +16,7 @@ source ~/.zsh/aws.sh
 # source ~/.env
 # source ~/.zsh/git.sh
 
-
 export EDITOR='nvim'
-
-export PATH=$PATH:"~/.zsh/scripts"
-
-
-export GTK_THEME=Adwaita:dark
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export QT_STYLE_OVERRIDE=Adwaita-Dark
-
 
 
 eval "$(zoxide init --cmd cd zsh)"
@@ -75,3 +66,7 @@ esac
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+autoload -Uz compinit
+compinit
+
