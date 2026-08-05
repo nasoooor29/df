@@ -1,6 +1,5 @@
 return {
-	"nasoooor29/fyler.nvim",
-	branch = "copilot/add-nvim-native-folds",
+	"FylerOrg/fyler.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = { icon_provider = "nvim_web_devicons" },
 	config = function()
