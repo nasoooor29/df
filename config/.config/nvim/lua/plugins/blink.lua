@@ -52,7 +52,6 @@ return {
 			},
 
 			sources = {
-				-- default = { "lsp", "path", "snippets", "copilot", "html-css" },
 				default = { "lsp", "path", "snippets", "html-css" },
 
 				providers = {
@@ -64,13 +63,6 @@ return {
 						max_items = 10,
 					},
 
-					-- copilot = {
-					-- 	name = "copilot",
-					-- 	module = "blink-cmp-copilot",
-					-- 	kind = "Copilot",
-					-- 	score_offset = -100,
-					-- 	async = true,
-					-- },
 					["html-css"] = {
 						name = "html-css",
 						module = "blink.compat.source",
@@ -125,7 +117,7 @@ return {
 					anti_conceal = { enabled = false },
 					file_types = { "markdown", "opencode_output" },
 				},
-				ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
+				ft = { "markdown", "Avante", "opencode_output" },
 			},
 			-- Optional, for file mentions and commands completion, pick only one
 			"saghen/blink.cmp",
