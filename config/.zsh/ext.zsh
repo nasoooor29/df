@@ -8,9 +8,6 @@ plugin() {
     local name=${repo:t:r}
     local dir="$HOME/.zsh/$name"
 
-    # [[ -d $dir/.git ]] || git clone --depth=1 "$repo" "$dir"
-
-    # if dir not exist clone it and print it
     if [[ ! -d $dir ]]; then
         echo "Cloning $repo into $dir..."
         git clone "$repo" "$dir"
@@ -42,6 +39,7 @@ plugin "https://github.com/romkatv/powerlevel10k.git" "powerlevel10k.zsh-theme"
 plugin "https://github.com/zsh-users/zsh-autosuggestions.git" "zsh-autosuggestions.zsh"
 plugin "https://github.com/jeffreytse/zsh-vi-mode.git" "zsh-vi-mode.plugin.zsh"
 plugin "https://github.com/ptavares/zsh-direnv.git" "zsh-direnv.plugin.zsh"
+plugin "https://github.com/zsh-users/zsh-syntax-highlighting.git" "zsh-syntax-highlighting.zsh"
 
 source ~/.zsh/.p10k.zsh
 autoload -Uz compinit
@@ -50,4 +48,3 @@ compinit
 # my custom plugins
 source ~/.zsh/my-plugins/sudo/plugin.sh
 
-plugin "https://github.com/zsh-users/zsh-syntax-highlighting.git" "zsh-syntax-highlighting.zsh"
