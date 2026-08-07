@@ -33,8 +33,8 @@ EOF
         shift
 
         if [[ ! -d "$target_directory" ]]; then
-          echo "extract: '$target_directory' is not a valid directory" >&2
-          return 1
+          echo "extract: '$target_directory' does not exist will create it now" >&2
+          command mkdir -p "$target_directory"
         fi
 
         target_directory="${target_directory%/}"
