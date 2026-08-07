@@ -3,6 +3,12 @@ set -u
 
 command="${1:-}"
 shift || true
+source "$HOME/.config/niri/scripts/dock.sh"
+
+if ! is_docked; then
+    echo "Not on dock, using default player" >&2
+    exec playerctl "$command" "$@"
+fi
 
 if [[ -z "$command" ]]; then
     echo "Usage: mediactl <play-pause|play|pause|stop|next|previous>" >&2
