@@ -39,8 +39,8 @@ pg-db() {
 
 # Connect to a database.
 # Usage:
-#   pg-c <database>
-pg-c() {
+#   pg-conn <database>
+pg-conn() {
     [[ $# -eq 1 ]] || {
         echo "Usage: pg-c <database>"
         return 1
