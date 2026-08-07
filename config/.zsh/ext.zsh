@@ -40,11 +40,13 @@ plugin "https://github.com/zsh-users/zsh-autosuggestions.git" "zsh-autosuggestio
 plugin "https://github.com/jeffreytse/zsh-vi-mode.git" "zsh-vi-mode.plugin.zsh"
 plugin "https://github.com/ptavares/zsh-direnv.git" "zsh-direnv.plugin.zsh"
 plugin "https://github.com/zsh-users/zsh-syntax-highlighting.git" "zsh-syntax-highlighting.zsh"
+plugin "https://github.com/remcohaszing/zsh-node-bin.git" "node-bin.plugin.zsh"
 
 source ~/.zsh/.p10k.zsh
 autoload -Uz compinit
 compinit
 
 # my custom plugins
-source ~/.zsh/my-plugins/sudo/plugin.sh
+source ~/.zsh/my-plugins/sudo.sh
+source ~/.zsh/my-plugins/extract.sh
 

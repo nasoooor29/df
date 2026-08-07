@@ -18,3 +18,4 @@ config/.config/niri/dms/colors.kdl
 /config/.zsh/zsh-direnv
 /config/.zsh/zsh-syntax-highlighting/highlighters/main
 /config/.zsh/zsh-vi-mode
+/config/.zsh/zsh-node-bin
