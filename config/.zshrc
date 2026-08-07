@@ -11,8 +11,6 @@ bindkey -e
 source ~/.zsh/alias.zsh
 source ~/.zsh/ext.zsh
 source ~/.zsh/env.zsh
-source ~/.zsh/penny.sh
-source ~/.zsh/aws.sh
 # source ~/.env
 # source ~/.zsh/git.sh
 

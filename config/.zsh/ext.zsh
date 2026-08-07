@@ -49,4 +49,7 @@ compinit
 # my custom plugins
 source ~/.zsh/my-plugins/sudo.sh
 source ~/.zsh/my-plugins/extract.sh
+# source ~/.zsh/penny.sh
+source ~/.zsh/my-plugins/aws.sh
+source ~/.zsh/my-plugins/pg.sh
 
