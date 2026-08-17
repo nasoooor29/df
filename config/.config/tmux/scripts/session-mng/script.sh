@@ -3,7 +3,7 @@ branches=$(ls "$BASE_DIR" | sed 's/^/[PLAYGROUND] /')
 
 HOSTS_FILE="$HOME/.config/tmux/scripts/session-mng/servers.json"
 COMMAND=$(echo -e "[PLAYGROUND] new\n[PLAYGROUND] clear\n$branches")
-SSH_HOSTS=$(cat $HOSTS_FILE | jq 'keys[]' -r | sed 's/^/[SSH] /')
+SSH_HOSTS=$(grep '^HOST ' ~/.ssh/config | cut -d' ' -f2- | sed 's/^/[SSH] /')
 
 TMUX_SESS_CMD='tmux list-sessions -F "#{?session_attached,1,0} #{session_name} #{session_last_attached}" \
   | sort -k1,1nr -k3,3nr \
@@ -37,50 +37,11 @@ fi
 
 if [[ "$CHOOSEN" == "[SSH]"* ]]; then
     CHOOSEN_NO_PREFIX="${CHOOSEN#\[SSH\] }"
-
-    DATA=$(jq -r --arg host "$CHOOSEN_NO_PREFIX" '.[$host]' "$HOSTS_FILE")
-    HOST=$(echo "$DATA" | jq -r '.host // empty')
-    USER_CFG=$(echo "$DATA" | jq -r '.user // empty')
-    PORT=$(echo "$DATA" | jq -r '.port // empty')
-    KEY=$(echo "$DATA" | jq -r '.key // empty')
-    PASSWORD_PATH_RAW=$(echo "$DATA" | jq -r '.password_file // empty')
-    PASSWORD_PATH="${PASSWORD_PATH_RAW/#\~/$HOME}"
-    PASSWORD=""
-
-    if [ -n "$PASSWORD_PATH" ] && [ -f "$PASSWORD_PATH" ]; then
-        PASSWORD=$(<"$PASSWORD_PATH")
-    fi
-
-    # fallback to current shell user if not set
-    USER="${USER_CFG:-$USER}"
-
-    if [ -z "$HOST" ]; then
-        tmux display-message "SSH: missing host for $CHOOSEN_NO_PREFIX"
-        exit 1
-    fi
-
-    # Build SSH command
-    SSH_CMD="ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=3"
-
-    [ -n "$PORT" ] && SSH_CMD="$SSH_CMD -p $PORT"
-    [ -n "$KEY" ] && SSH_CMD="$SSH_CMD -i $KEY"
-
-    TARGET="$USER@$HOST"
-
-    if [ -n "$PASSWORD" ] && [ -z "$KEY" ]; then
-        if command -v sshpass >/dev/null 2>&1; then
-            SSH_CMD="sshpass -e $SSH_CMD $TARGET"
-        else
-            tmux display-message "sshpass not installed"
-            exit 1
-        fi
-    else
-        SSH_CMD="$SSH_CMD $TARGET"
-    fi
+    SSH_CMD="ssh $CHOOSEN_NO_PREFIX"
 
     # Open new window in CURRENT session
     # launch ssh with the sshpass env var
-    tmux new-window -n "ssh:$CHOOSEN_NO_PREFIX" "SSHPASS=$(printf %q "$PASSWORD") $SSH_CMD; exit"
+    tmux new-window -n "ssh:$CHOOSEN_NO_PREFIX" "$SSH_CMD; exit 0"
 
     exit 0
 fi
